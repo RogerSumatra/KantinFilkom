@@ -10,7 +10,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-    <style>
+    <style>   
         body {
             background-image: url("img/Background.png");
             background-size: 100% 100%;
@@ -38,7 +38,7 @@
 
         .container {
             text-align: center;
-            border: 2px solid black;    
+            border: 2px solid black;
             margin: 20px auto;
             width: fit-content;
             background-image: url("img/Background.png");
@@ -49,7 +49,7 @@
 
         .white-background {
             background-color: white;
-
+            height: 100%;
         }
     </style>
 </head>
@@ -57,11 +57,17 @@
 <body>
     <div class="container text-center">
         <div class="row">
-            <div class="col white-background justify-content-center">
+            <div class="col-md-6 white-background justify-content-center">
                 <h1>Pengen Pesen Makan Tapi Males Ngantri? Kantin FILKOM Aja</h1>
-                <input type="text"><br>
-                <input type="text"><br>
-                <button>Login</button><br>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <br><button>Login</button><br>
                 <a href="">Tidak punya akun? buat sekarang</a>
             </div>
             <div class="col"></div>

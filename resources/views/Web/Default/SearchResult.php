@@ -1,6 +1,7 @@
 <?php
-$toko = 7;
+$search_res = 3;
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -35,35 +36,9 @@ $toko = 7;
             margin-right: 10px;
         }
 
-        .search-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
+        .card {
+            max-height: ;
         }
-
-        .form-control {
-            width: 50%;
-        }
-
-        .container {
-            margin-top: 30px;
-        }
-
-        .card-link {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .card-link:hover .card {
-            transform: scale(1.02);
-            transition: transform 0.2s;
-        }
-
-        .daftar-toko {
-            margin-top: 70px;
-            margin-bottom: 20px;
-        }
-
 
         .footer {
             height: 50px;
@@ -91,39 +66,32 @@ $toko = 7;
         </div>
     </nav>
 
-    <div>
-        <form class="search-container d-flex" role="search" action="SearchResult.php" method="GET">
-            <input class="form-control me-2" type="search" placeholder="Mau makan apa?" aria-label="Search"
-                name="query">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
+    <h1>Toko yang memiliki menu </h1>
 
-    <div class="container text-center">
-        <div class="row daftar-toko">
-            <h1>Daftar Toko</h1>
-        </div>
-        <div class="row justify-content-center d-flex">
-            <?php
-            for ($x = 0; $x < $toko; $x++) {
-                echo '
-            <div class="col-md-4">
-                <a href="Menu.php" class="card-link">
-                    <div class="card mb-4">
-                        <img src="img/HomepageTop.png" class="card-img-top" alt="Toko Logo">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
+    <div class="row justify-content-center d-flex">
+        <?php
+        for ($x = 0; $x < $search_res; $x++) {
+            echo '<div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="menu-image col-md-6">
+                            <img src="img/HomepageTop.png" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Card title</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="m-0">harga</p>
+                                    <button class="btn btn-outline-success" type="submit">Tambah</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>';
-            }
-            ?>
-
-        </div>
+        }
+        ?>
     </div>
-    <div class="footer"></div>
-
 
 </body>
 

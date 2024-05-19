@@ -1,5 +1,9 @@
 <?php
-
+$makanan = 4;
+$minuman = 4;
+$makanan_string = "ayam";
+$toko_status = "buka";
+$jam_buka = "8.00 - 16.00";
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
     <style>
         .nav-link:hover {
             background-color: black;
@@ -35,6 +40,21 @@
             margin-right: 10px;
         }
 
+        .toko-image {
+            width: 65%;
+            margin: auto;
+        }
+
+        .toko-image img {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+        }
+
+
         .border {
             margin: auto;
             justify-content: center;
@@ -44,16 +64,21 @@
             margin-bottom: 10px;
         }
 
-        .resto-info {
+        .toko-info {
             margin: auto;
             justify-content: space-between;
             width: 75%;
             display: flex;
+            margin-bottom: 10px;
         }
 
-        .resto-info h2 {
-            position: rela tive;
-            margin-right: 10px;
+        .status-buka h3 {
+            border-radius: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-right: 20px;
+            padding-bottom: 5px;
+            color: white;
         }
 
         .jam-buka {
@@ -64,6 +89,7 @@
         .nav-pills {
             margin: auto;
             width: 75%;
+            margin-bottom: 20px;
         }
 
         .scrollspy-example {
@@ -82,8 +108,16 @@
             object-fit: cover;
         }
 
+        .card-body h5 {
+            margin-bottom: 40px;
+        }
+
         .align-right {
             margin-left: auto;
+        }
+
+        .footer {
+            height: 50px;
         }
     </style>
 </head>
@@ -93,9 +127,8 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="Homepage.php">
                 <img src="img/Logo.png" alt="Kantin FILKOM" width="80px">
-
             </a>
-            <div>
+            <div id="navbar">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="Login.php">Login</a>
@@ -108,11 +141,26 @@
         </div>
     </nav>
 
-    <div class="resto-info">
+    <div class="toko-image">
+        <img src="img/HomepageTop.png" alt="">
+    </div>
+
+    <div class="toko-info">
         <h3>Nama Toko</h3>
         <div class="jam-buka">
-            <h3>Buka</h3>
-            <h3>8.00 - 16.00</h3>
+            <div class="status-buka">
+                <?php
+                if ($toko_status == "buka") {
+                    echo '<h3 style="background-color: green;">Buka</h3>';
+                } else if ($toko_status == "tutup") {
+                    echo '<h3 style="background-color: red;">Tutup</h3>';
+                }
+                ?>
+            </div>
+            <?php
+            echo '<h3>' . $jam_buka . '</h3>';
+            ?>
+
         </div>
     </div>
 
@@ -120,10 +168,14 @@
 
     <ul class="nav nav-pills">
         <li class="nav-item">
-            <a class="nav-link" href="#scrollspyHeading1">Makanan</a>
+            <a class="nav-link" href="#scrollspyHeading1">
+                <h5>Makanan</h5>
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#scrollspyHeading2">Minuman</a>
+            <a class="nav-link" href="#scrollspyHeading2">
+                <h5>Minuman</h5>
+            </a>
         </li>
     </ul>
 
@@ -131,164 +183,78 @@
         data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
         <h4 id="scrollspyHeading1">Makanan</h4>
         <div class="row justify-content-center d-flex">
-            <div class="col-md-6">
+            <?php
+            for ($x = 0; $x < $makanan; $x++) {
+                echo '<div class="col-md-6">
                 <div class="card mb-4">
                     <div class="row">
                         <div class="menu-image col-md-6">
                             <img src="img/HomepageTop.png" class="card-img" alt="...">
                         </div>
                         <div class="col-md-6">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the
-                                    card's content.</p>
-                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="m-0">harga</p>
+                                    <button class="btn btn-outline-success" type="submit">Tambah</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="row">
-                        <div class="menu-image col-md-6">
-                            <img src="img/HomepageTop.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the
-                                    card's content.</p>
-                                <a href="#" class="btn btn-primary align-right">Tambah</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="row">
-                        <div class="menu-image col-md-6">
-                            <img src="img/HomepageTop.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the
-                                    card's content.</p>
-                                <a href="#" class="btn btn-primary align-right">Tambah</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="row">
-                        <div class="menu-image col-md-6">
-                            <img src="img/HomepageTop.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the
-                                    card's content.</p>
-                                <a href="#" class="btn btn-primary align-right">Tambah</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>';
+            }
+            ?>
         </div>
+
         <h4 id="scrollspyHeading2">Minuman</h4>
         <div class="row justify-content-center d-flex">
-            <div class="col-md-6">
+            <?php
+            for ($x = 0; $x < $minuman; $x++) {
+                echo '<div class="col-md-6">
                 <div class="card mb-4">
                     <div class="row">
                         <div class="menu-image col-md-6">
                             <img src="img/HomepageTop.png" class="card-img" alt="...">
                         </div>
                         <div class="col-md-6">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the
-                                    card's content.</p>
-                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="m-0">harga</p>
+                                    <button class="btn btn-outline-success" type="submit">Tambah</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="row">
-                        <div class="menu-image col-md-6">
-                            <img src="img/HomepageTop.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the
-                                    card's content.</p>
-                                <a href="#" class="btn btn-primary align-right">Tambah</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="row">
-                        <div class="menu-image col-md-6">
-                            <img src="img/HomepageTop.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the
-                                    card's content.</p>
-                                <a href="#" class="btn btn-primary align-right">Tambah</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="row">
-                        <div class="menu-image col-md-6">
-                            <img src="img/HomepageTop.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the
-                                    card's content.</p>
-                                <a href="#" class="btn btn-primary align-right">Tambah</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>';
+            }
+            ?>
         </div>
     </div>
+    <div class="footer"></div>
 
+    <script>
+        // asumsikan Anda memiliki fungsi yang dapat memeriksa apakah pengguna sudah login
+        function isLoggedIn() {
+            // Logika untuk memeriksa apakah pengguna sudah login
+            // return true jika sudah login, false jika belum
+        }
+
+        if (isLoggedIn()) {
+            document.getElementById('navbar').innerHTML = `
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Cart.php">Cart</a>
+                    </li>
+                </ul>
+            `;
+        }
+    </script>
 </body>
 
 </html>
