@@ -34,6 +34,57 @@
         .nav-item {
             margin-right: 10px;
         }
+
+        .border {
+            margin: auto;
+            justify-content: center;
+            height: 3px;
+            width: 80%;
+            background-color: lightgrey;
+            margin-bottom: 10px;
+        }
+
+        .resto-info {
+            margin: auto;
+            justify-content: space-between;
+            width: 75%;
+            display: flex;
+        }
+
+        .resto-info h2 {
+            position: rela tive;
+            margin-right: 10px;
+        }
+
+        .jam-buka {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .nav-pills {
+            margin: auto;
+            width: 75%;
+        }
+
+        .scrollspy-example {
+            margin: auto;
+            width: 80%;
+        }
+
+        .menu-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-image img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .align-right {
+            margin-left: auto;
+        }
     </style>
 </head>
 
@@ -55,8 +106,188 @@
                 </ul>
             </div>
         </div>
-    </nav>  
+    </nav>
 
+    <div class="resto-info">
+        <h3>Nama Toko</h3>
+        <div class="jam-buka">
+            <h3>Buka</h3>
+            <h3>8.00 - 16.00</h3>
+        </div>
+    </div>
+
+    <div class="border"></div>
+
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading1">Makanan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading2">Minuman</a>
+        </li>
+    </ul>
+
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
+        data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+        <h4 id="scrollspyHeading1">Makanan</h4>
+        <div class="row justify-content-center d-flex">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="menu-image col-md-6">
+                            <img src="img/HomepageTop.png" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="menu-image col-md-6">
+                            <img src="img/HomepageTop.png" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="menu-image col-md-6">
+                            <img src="img/HomepageTop.png" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="menu-image col-md-6">
+                            <img src="img/HomepageTop.png" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 id="scrollspyHeading2">Minuman</h4>
+        <div class="row justify-content-center d-flex">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="menu-image col-md-6">
+                            <img src="img/HomepageTop.png" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="menu-image col-md-6">
+                            <img src="img/HomepageTop.png" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="menu-image col-md-6">
+                            <img src="img/HomepageTop.png" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="menu-image col-md-6">
+                            <img src="img/HomepageTop.png" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the
+                                    card's content.</p>
+                                <a href="#" class="btn btn-primary align-right">Tambah</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
