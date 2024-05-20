@@ -1,6 +1,6 @@
 <?php
-$makanan = 4;
-$minuman = 4;
+$makanan = 20;
+$minuman = 20;
 $makanan_string = "ayam";
 $toko_status = "buka";
 $jam_buka = "8.00 - 16.00";
@@ -136,6 +136,20 @@ $jam_buka = "8.00 - 16.00";
                     <li class="nav-item">
                         <a class="nav-link" href="Signup.php">Sign Up</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Cart.php"><img src="img/cart.png" alt="" width="25px"></a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <div class="btn btn-secondary" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <img src="img/profile.png" alt="" width="25px">
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -181,8 +195,8 @@ $jam_buka = "8.00 - 16.00";
 
     <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
         data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
-        <h4 id="scrollspyHeading1">Makanan</h4>
-        <div class="row justify-content-center d-flex">
+        <h4 id="    ">Makanan</h4>
+        <div class="row justify-content-center d-flex" id="scrollspyHeading1">
             <?php
             for ($x = 0; $x < $makanan; $x++) {
                 echo '<div class="col-md-6">
@@ -207,8 +221,8 @@ $jam_buka = "8.00 - 16.00";
             ?>
         </div>
 
-        <h4 id="scrollspyHeading2">Minuman</h4>
-        <div class="row justify-content-center d-flex">
+        <h4 id="">Minuman</h4>
+        <div class="row justify-content-center d-flex" id="scrollspyHeading2">
             <?php
             for ($x = 0; $x < $minuman; $x++) {
                 echo '<div class="col-md-6">

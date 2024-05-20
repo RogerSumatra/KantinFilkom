@@ -34,29 +34,33 @@
             z-index: -1;
         }
 
+        .login-wrapper{
+         
+        }
 
-
-        .container {
+        .cont-login {
             text-align: center;
-            border: 2px solid black;
-            margin: 20px auto;
             width: fit-content;
+            height: 95vh;
+            width: 900px;
+            height: 500px;
             background-image: url("img/Background.png");
             background-size: cover;
             background-position: center;
-            height: 95vh;
+            border: 2px solid black;
+            margin: auto;       
         }
 
         .white-background {
             background-color: white;
-            height: 100%;
+            height: 10px;
         }
     </style>
 </head>
 
 <body>
-    <div class="container text-center">
-        <div class="row">
+    <div class="login-wrapper text-center">
+        <div class="row cont-login">
             <div class="col-md-6 white-background justify-content-center">
                 <h1>Pengen Pesen Makan Tapi Males Ngantri? Kantin FILKOM Aja</h1>
                 <div class="form-floating mb-3">
