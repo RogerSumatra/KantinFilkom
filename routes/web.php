@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WebController::class, 'test']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
