@@ -20,27 +20,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
         crossorigin="anonymous"></script>
 
     <style>
-        .nav-link:hover {
-            background-color: black;
-            color: white;
-        }
-
-        .nav-link {
-            justify-content: center;
-            display: flex;
-            border-radius: 15px;
-            width: 100px;
-        }
-
-        .navbar-nav {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .nav-item {
-            margin-right: 10px;
-        }
-
         .toko-image {
             width: 65%;
             margin: auto;
@@ -87,12 +66,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
             align-items: flex-end;
         }
 
-        .nav-pills {
-            margin: auto;
-            width: 75%;
-            margin-bottom: 20px;
-        }
-
         .scrollspy-example {
             margin: auto;
             width: 80%;
@@ -124,28 +97,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
 </head>
 
 <body>
-    <?php if ($isLoggedIn): ?>
-        
-    <?php else: ?>
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="Homepage.php">
-                    <img src="img/Logo.png" alt="Kantin FILKOM" width="80px">
-                </a>
-                <div id="navbar">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="Login.php">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Signup.php">Sign Up</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    <?php endif; ?>
-
     <div class="toko-image">
         <img src="img/HomepageTop.png" alt="">
     </div>
@@ -239,27 +190,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
         </div>
     </div>
     <div class="footer"></div>
-
-    <script>
-        // asumsikan Anda memiliki fungsi yang dapat memeriksa apakah pengguna sudah login
-        function isLoggedIn() {
-            // Logika untuk memeriksa apakah pengguna sudah login
-            // return true jika sudah login, false jika belum
-        }
-
-        if (isLoggedIn()) {
-            document.getElementById('navbar').innerHTML = `
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Cart.php">Cart</a>
-                    </li>
-                </ul>
-            `;
-        }
-    </script>
 </body>
 
 </html>

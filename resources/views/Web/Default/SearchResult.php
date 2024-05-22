@@ -15,27 +15,6 @@ $search_res = 3;
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <style>
-        .nav-link:hover {
-            background-color: black;
-            color: white;
-        }
-
-        .nav-link {
-            justify-content: center;
-            display: flex;
-            border-radius: 15px;
-            width: 100px;
-        }
-
-        .navbar-nav {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .nav-item {
-            margin-right: 10px;
-        }
-
         .search-container {
             display: flex;
             justify-content: center;
@@ -59,25 +38,6 @@ $search_res = 3;
 </head>
 
 <body>
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="Homepage.php">
-                <img src="img/Logo.png" alt="Kantin FILKOM" width="80px">
-
-            </a>
-            <div>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Signup.php">Sign Up</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <div>
         <form class="search-container d-flex" role="search" action="SearchResult.php" method="GET">
             <input class="form-control me-2" type="search" placeholder="Mau makan apa?" aria-label="Search"
