@@ -34,10 +34,10 @@
 
 
         .cont-login {
-            text-align: center;
+
             width: fit-content;
             width: 900px;
-            height: 600px;
+            height: 700px;
             background-image: url("img/Background.png");
             background-size: cover;
             background-position: center;
@@ -51,25 +51,21 @@
             /* height: 10px; */
         }
 
-        .btn-login {
+        .btn-signup {
             background-color: color-mix(in hsl shorter hue, grey 40%, white 60%);
             border-radius: 25px;
-            width: 100px;
+            justify-self: center;
+            display: flex;
+            margin: auto;
         }
     </style>
 </head>
 
 <body>
     <form action="" method="post">
-        <div class="mb-3">
-            <input type="text" class="form-control" name="username" id="username" placeholder="Username">
-        </div>
-        <div class="mb-3">
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-        </div>
 
         <?php
-        session_start();
+        // session_start();
 
         if (isset($_POST['username']) || isset($_POST['password'])) {
             if ($_POST['username'] === 'menteri' && $_POST['password'] === 'menteri') {
@@ -86,25 +82,36 @@
             header("Location: Homepage.php");
         }
         ?>
-        <br><br><input type="submit" value="Login">
+
     </form>
 
-    <div class="login-wrapper text-center">
+    <div class="login-wrapper">
         <div class="row cont-login">
-            <div class="col-md-6 justify-content-center login-content">
-                <h5>Buat Akun Baru</h5>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+            <div class="col-md-6  login-content">
+                <div style="display: flex; justify-content: center;">
+                    <h5>Buat Akun Baru</h5>
                 </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">Nama Depan</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Nama Depan">
                 </div>
-                <br>
-                <a href="homepage.php"><button type="button" class="btn btn-light btn-login">Login</button></a>
-                <br>
-                <a href="signup.php">Tidak punya akun? buat sekarang</a>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Nama Belakang</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Nama Belakang">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="example@email.com">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                    <label for="repeatPassword" class="form-label">Ulangi Password</label>
+                    <input type="password" class="form-control" name="repeatPassword" id="repeatPassword" placeholder="Ulangi Password">
+                </div>
+                <br><input type="submit" value="Sign Up" button type="button" class="btn btn-light btn-signup"><br>
             </div>
             <div class="col-md-6 blank-content"></div>
         </div>
