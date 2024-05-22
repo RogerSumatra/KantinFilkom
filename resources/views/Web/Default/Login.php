@@ -31,7 +31,6 @@
             z-index: -1;
         }
 
-        .login-wrapper {}
 
         .cont-login {
             text-align: center;
