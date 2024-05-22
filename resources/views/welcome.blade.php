@@ -75,7 +75,7 @@ $toko = 7;
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="welcome.blade.php">
-                <img src="img/Logo.png" alt="Kantin FILKOM" width="80px">
+                <img src="resources/img/Logo.png" alt="Kantin FILKOM" width="80px">
 
             </a>
             <div>
