@@ -4,6 +4,7 @@ $minuman = 20;
 $makanan_string = "ayam";
 $toko_status = "buka";
 $jam_buka = "8.00 - 16.00";
+$isLoggedIn = isset($_SESSION['user_id']);
 ?>
 
 <!DOCTYPE html>
@@ -123,37 +124,27 @@ $jam_buka = "8.00 - 16.00";
 </head>
 
 <body>
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="Homepage.php">
-                <img src="img/Logo.png" alt="Kantin FILKOM" width="80px">
-            </a>
-            <div id="navbar">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Signup.php">Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Cart.php"><img src="img/cart.png" alt="" width="25px"></a>
-                    </li>
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <div class="btn btn-secondary" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <img src="img/profile.png" alt="" width="25px">
-                            </div>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+    <?php if ($isLoggedIn): ?>
+        
+    <?php else: ?>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="Homepage.php">
+                    <img src="img/Logo.png" alt="Kantin FILKOM" width="80px">
+                </a>
+                <div id="navbar">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Login.php">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Signup.php">Sign Up</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    <?php endif; ?>
 
     <div class="toko-image">
         <img src="img/HomepageTop.png" alt="">
