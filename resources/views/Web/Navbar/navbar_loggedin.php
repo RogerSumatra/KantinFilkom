@@ -1,3 +1,7 @@
+<?php
+$item = 5;
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -32,13 +36,37 @@
             margin-bottom: 20px;
         }
 
-        .menu-image{
+        .menu-image {
             margin-top: 10px;
         }
 
-        .text-harga{
+        .text-harga {
             align-self: flex-end;
             margin-bottom: 10px;
+        }
+
+        .text-nama {
+            margin-top: 10px;
+        }
+
+        .card-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-body button {
+            margin: 0 10px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 10px;
+        }
+
+        .card-body h5 {
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -77,12 +105,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row justify-content-center d-flex">
-                        <div class="card mb-4">
+                    <div class="row justify-content-center d-flex px-3">
+                        <?php
+                        for ($x = 0; $x < $item; $x++) {
+                            echo '<div class="card mb-4">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div>
-                                        nama
+                                        <h5 class="text-nama">nama</h5>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -94,13 +124,21 @@
                             </div>
                             <div class="row">
                                 <div class="text-harga col-md-8">
-                                    harga
+                                    15.000
                                 </div>
                                 <div class="card-body text-center  col-md-4">
-                                    <button class="btn btn-outline-success" type="submit">Tambah</button>
+                                    <button class="btn btn-outline-success" type="submit">
+                                        <h6>-</h6>
+                                    </button>
+                                    <h5>1</h5>
+                                    <button class="btn btn-outline-success" type="submit">
+                                        <h6>+</h6>
+                                    </button>
                                 </div>
                             </div>
-                        </div>
+                        </div>';
+                        }
+                        ?>
 
                     </div>
                     <div class="modal-footer">

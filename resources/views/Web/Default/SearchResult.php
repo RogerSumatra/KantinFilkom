@@ -36,8 +36,20 @@ $search_res = 3;
             margin-right: 10px;
         }
 
-        .card {
-            max-height: ;
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .form-control {
+            width: 50%;
+        }
+
+        .search-text {
+            margin-left: 50px;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .footer {
@@ -66,20 +78,44 @@ $search_res = 3;
         </div>
     </nav>
 
-    <h1>Toko yang memiliki menu </h1>
+    <div>
+        <form class="search-container d-flex" role="search" action="SearchResult.php" method="GET">
+            <input class="form-control me-2" type="search" placeholder="Mau makan apa?" aria-label="Search"
+                name="query">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
 
-    <div class="row justify-content-center d-flex">
+    <h3 class="search-text">Toko yang memiliki "menu" </h3>
+
+    <div class="row justify-content-center d-flex px-5">
         <?php
         for ($x = 0; $x < $search_res; $x++) {
-            echo '<div class="col-md-12">
-                <div class="card mb-4">
-                    <div class="row">
-                        <div class="menu-image col-md-6">
+            echo '
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <h5 class="card-title">Nama toko</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card-body text-end">
+                    <button class="btn btn-outline-success" type="submit">Lihat Toko</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8 justify-content-center d-flex px-3">
+                <div class="card mb-3">
+                    <div class="row align-items-center"> <!-- Menambahkan class align-items-center di sini -->
+                        <div class="col-md-4 d-flex justify-content-center align-items-center"> <!-- Menambahkan class d-flex, justify-content-center, dan align-items-center di sini -->
                             <img src="img/HomepageTop.png" class="card-img" alt="...">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class="card-body text-center">
-                                <h5 class="card-title">Card title</h5>
+                                <h5 class="card-title">nama menu</h5>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <p class="m-0">harga</p>
                                     <button class="btn btn-outline-success" type="submit">Tambah</button>
@@ -88,9 +124,13 @@ $search_res = 3;
                         </div>
                     </div>
                 </div>
-            </div>';
+            </div>
+        </div>
+    </div>
+    ';
         }
         ?>
+
     </div>
 
 </body>

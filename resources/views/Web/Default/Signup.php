@@ -77,7 +77,7 @@
             } else {
                 echo "username atau password salah";
             }
-        }
+        }   
         if (isset($_SESSION['username'])) {
             header("Location: Homepage.php");
         }
