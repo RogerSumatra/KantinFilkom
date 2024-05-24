@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class WebController extends Controller
 {
     public function test(){
-        return view('menu');
+        return view('welcome');
     }
 
 }
