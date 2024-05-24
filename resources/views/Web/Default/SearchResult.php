@@ -1,5 +1,8 @@
 <?php
 $search_res = 3;
+$harga_menu = "eek";
+$nama_menu = "nama menu eek";
+$nama_toko = "modol";
 ?>
 
 
@@ -46,47 +49,53 @@ $search_res = 3;
         </form>
     </div>
 
-    <h3 class="search-text">Toko yang memiliki "menu" </h3>
+    <h3 class="search-text">
+        <?php
+        echo "Toko yang memiliki"
+            ?>
+    </h3>
 
     <div class="row justify-content-center d-flex px-5">
         <?php
         for ($x = 0; $x < $search_res; $x++) {
             echo '
-    <div class="col-md-12">
-        <div class="card mb-4">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <h5 class="card-title">Nama toko</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card-body text-end">
-                    <button class="btn btn-outline-success" type="submit">Lihat Toko</button>
-                    </div>
+<div class="col-md-12">
+    <div class="card mb-4">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card-body">
+                    <h5 class="nama-toko" id="nama-toko">
+                    '.$nama_toko.'
+                    </h5>
                 </div>
             </div>
-
-            <div class="col-md-8 justify-content-center d-flex px-3">
-                <div class="card mb-3">
-                    <div class="row align-items-center"> <!-- Menambahkan class align-items-center di sini -->
-                        <div class="col-md-4 d-flex justify-content-center align-items-center"> <!-- Menambahkan class d-flex, justify-content-center, dan align-items-center di sini -->
-                            <img src="img/HomepageTop.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">nama menu</h5>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <p class="m-0">harga</p>
-                                    <button class="btn btn-outline-success" type="submit">Tambah</button>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-md-3">
+                <div class="card-body text-end">
+                    <button class="btn btn-outline-success" type="submit">Lihat Toko</button>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <img src="img/HomepageTop.png" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">
+                    '.$nama_menu.'
+                    </h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="harga-menu">
+                        '.$harga_menu.'
+                        </p>
+                        <button class="btn btn-outline-success" type="submit">Tambah</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
     ';
         }
         ?>
