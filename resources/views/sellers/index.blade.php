@@ -6,3 +6,4 @@
         <a href="{{ route('sellers.show', $seller) }}">{{ $seller->name }}</a><br>
     @endforeach
 @endsection
+
