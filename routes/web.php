@@ -1,10 +1,29 @@
 <?php
 
+use App\Http\Controllers\SellerController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SellerOrderController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [WebController::class, 'test']);
+Route::get('/', function () {
+    return view('welcome');
+});
+//Route::get('/', [SellerController::class, 'index'])->name('sellers.index');
+Route::get('/sellers/{seller}', [SellerController::class, 'show'])->name('sellers.show');
+
+Route::post('/search', [MenuController::class, 'search'])->name('menus.search');
+
+Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+Route::post('/orders', [OrderController::class, 'create'])->name('orders.create');
+Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+
+Route::get('/seller/orders', [SellerOrderController::class, 'index'])->name('seller.orders.index');
+Route::patch('/seller/orders/{order}', [SellerOrderController::class, 'updateStatus'])->name('seller.orders.updateStatus');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -14,6 +33,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');      
+    Route::post('/orders', [OrderController::class, 'create'])->name('orders.create');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');     
+    Route::get('/seller/orders', [SellerOrderController::class, 'index'])->name('seller.orders.index');
+    Route::patch('/seller/orders/{order}', [SellerOrderController::class, 'updateStatus'])->name('seller.orders.updateStatus');
 });
 
 require __DIR__.'/auth.php';
