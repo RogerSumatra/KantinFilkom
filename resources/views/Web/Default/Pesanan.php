@@ -35,7 +35,7 @@
             width: 98%;
         }
 
-        .pesanan-list {}
+
     </style>
 
 </head>
