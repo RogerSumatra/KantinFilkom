@@ -19,12 +19,6 @@ Route::post('/search', [MenuController::class, 'search'])->name('menus.search');
 Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-Route::post('/orders', [OrderController::class, 'create'])->name('orders.create');
-Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
-
-Route::get('/seller/orders', [SellerOrderController::class, 'index'])->name('seller.orders.index');
-Route::patch('/seller/orders/{order}', [SellerOrderController::class, 'updateStatus'])->name('seller.orders.updateStatus');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -36,10 +30,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');      
-    Route::post('/orders', [OrderController::class, 'create'])->name('orders.create');
-    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');     
-    Route::get('/seller/orders', [SellerOrderController::class, 'index'])->name('seller.orders.index');
-    Route::patch('/seller/orders/{order}', [SellerOrderController::class, 'updateStatus'])->name('seller.orders.updateStatus');
 });
 
 require __DIR__.'/auth.php';
