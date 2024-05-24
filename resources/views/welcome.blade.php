@@ -81,10 +81,10 @@ $toko = 7;
             <div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="Login.php">Login</a>
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Signup.php">Sign Up</a>
+                        <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
                     </li>
                 </ul>
             </div>
