@@ -12,8 +12,8 @@ $isLoggedin = false;
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
     <style>
         .search-container {
             display: flex;
@@ -52,7 +52,7 @@ $isLoggedin = false;
 </head>
 
 <body>
-    
+
     @if ($isLoggedin)
         @include('web.navbar.loggedin')
     @else
@@ -72,21 +72,20 @@ $isLoggedin = false;
             <h1>Daftar Toko</h1>
         </div>
         <div class="row justify-content-center d-flex">
-            <?php
-            for ($x = 0; $x < $toko; $x++) {
-                echo '
-            <div class="col-md-4">
-                <a href="Menu.php" class="card-link">
-                    <div class="card mb-4">
-                        <img src="img/HomepageTop.png" class="card-img-top" alt="Toko Logo">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
+            @for ($id_toko = 0; $id_toko < $toko; $id_toko++)
+                <div class="col-md-4">
+                    <a href="{{ url('/menu') }}" class="card-link">
+                        <div class="card mb-4">
+                            <img src="img/HomepageTop.png" class="card-img-top" alt="Toko Logo">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>';
-            }
-            ?>
+                    </a>
+                </div>
+            @endfor
+
+
 
         </div>
     </div>
