@@ -85,7 +85,7 @@ $total_harga = "eek";
             <div id="navbar">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <a type="button" href="pesanan.php">
                             <img src="img/list.png" alt="" width="25px">
                         </a>
                     </li>
