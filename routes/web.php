@@ -21,7 +21,7 @@ Route::get('/search', [MenuController::class, 'search'])->name('menus.search');
 Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-Route::get('/', [WebController::class, 'index'])->middleware(['auth', 'verified'])->name('loggedhomepage');
+Route::get('/dashboard', [WebController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

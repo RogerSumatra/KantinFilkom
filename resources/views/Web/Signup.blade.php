@@ -4,9 +4,12 @@
 <head>
     <title>Kantin FILKOM | Sign Up</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
     <style>
         body {
@@ -32,9 +35,7 @@
             z-index: -1;
         }
 
-
-        .cont-login {
-
+        .cont-refister {
             width: fit-content;
             width: 900px;
             height: 700px;
@@ -46,9 +47,8 @@
             margin-top: 100px;
         }
 
-        .login-content {
+        .refister-content {
             background-color: white;
-            /* height: 10px; */
         }
 
         .btn-signup {
@@ -62,60 +62,58 @@
 </head>
 
 <body>
-    <form action="" method="post">
 
-        <?php
-        // session_start();
-
-        if (isset($_POST['username']) || isset($_POST['password'])) {
-            if ($_POST['username'] === 'menteri' && $_POST['password'] === 'menteri') {
-                $_SESSION['username'] = $_POST['username'];
-                header("Location: Homepage.php");
-            } else if ($_POST['username'] === 'kepaladepartemen' && $_POST['password'] === 'kepaladepartemen') {
-                $_SESSION['username'] = $_POST['username'];
-                header("Location: Homepage.php");
-            } else {
-                echo "username atau password salah";
-            }
-        }   
-        if (isset($_SESSION['username'])) {
-            header("Location: Homepage.php");
-        }
-        ?>
-
-    </form>
-
-    <div class="login-wrapper">
-        <div class="row cont-login">
-            <div class="col-md-6  login-content">
-                <div style="display: flex; justify-content: center;">
-                    <h5>Buat Akun Baru</h5>
+    <div class="register-wrapper">
+        <div class="row cont-refister">
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="col-md-6 refister-content">
+                    <div style="display: flex; justify-content: center;">
+                        <h5>Buat Akun Baru</h5>
+                    </div>
+                    <!-- Pesan Kesalahan -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <!-- Form Input -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="first_name" id="first_name"
+                            placeholder="Nama Depan" value="{{ old('first_name') }}" required>
+                        <label for="first_name" class="form-label">Nama Depan</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="last_name" id="last_name"
+                            placeholder="Nama Belakang" value="{{ old('last_name') }}" required>
+                        <label for="last_name" class="form-label">Nama Belakang</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" name="email" id="email"
+                            placeholder="example@email.com" value="{{ old('email') }}" required>
+                        <label for="email" class="form-label">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" name="password" id="password"
+                            placeholder="Password" required>
+                        <label for="password" class="form-label">Password</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" name="password_confirmation"
+                            id="password_confirmation" placeholder="Ulangi Password" required>
+                        <label for="password_confirmation" class="form-label">Ulangi Password</label>
+                    </div>
+                    <button type="submit" class="btn btn-light btn-signup">Sign Up</button>
                 </div>
-                <div class="mb-3">
-                    <label for="firstName" class="form-label">Nama Depan</label>
-                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Nama Depan">
-                </div>
-                <div class="mb-3">
-                    <label for="lastName" class="form-label">Nama Belakang</label>
-                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Nama Belakang">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" name="email" id="email" placeholder="example@email.com">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                </div>
-                <div class="mb-3">
-                    <label for="repeatPassword" class="form-label">Ulangi Password</label>
-                    <input type="password" class="form-control" name="repeatPassword" id="repeatPassword" placeholder="Ulangi Password">
-                </div>
-                <br><input type="submit" value="Sign Up" button type="button" class="btn btn-light btn-signup"><br>
-            </div>
-            <div class="col-md-6 blank-content"></div>
+                <div class="col-md-6 blank-content"></div>
+            </form>
         </div>
     </div>
+
 </body>
 
 </html>

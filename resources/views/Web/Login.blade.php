@@ -70,12 +70,23 @@
             <div class="row cont-login">
                 <div class="col-md-6 justify-content-center login-content">
                     <h1>Pengen Pesen Makan Tapi Males Ngantri? Kantin FILKOM Aja</h1>
+                    <!-- Pesan Kesalahan -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <!-- Form Input -->
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" required autofocus placeholder="name@example.com">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="{{ old('email') }}" required autofocus>
                         <label for="email" class="form-label">Email</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                         <label for="password" class="form-label">Password</label>
                     </div>
                     <br>
