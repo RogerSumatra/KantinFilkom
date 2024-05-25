@@ -99,9 +99,9 @@ $isLoggedIn = isset($_SESSION['user_id']);
 <body>
 
     @auth
-        @include('web.navbar.loggedin')
+        @include('web.loggedin')
     @else
-        @include('web.navbar.default')
+        @include('web.default')
     @endauth
 
 
@@ -113,7 +113,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
         <h3>Nama Toko</h3>
         <div class="jam-buka">
             <div class="status-buka">
-
+                
                 @if ($toko->jam_buka == 'buka')
                 {
                 <h3 style="background-color: green;">Buka</h3>

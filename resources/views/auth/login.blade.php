@@ -45,3 +45,27 @@
         </div>
     </form>
 </x-guest-layout>
+
+
+body {
+            background-image: url("img/Background.png");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        body::after {
+            content: "";
+            background: url("img/Background.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(2px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }

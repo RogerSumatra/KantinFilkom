@@ -1,7 +1,3 @@
-<?php
-$isLoggedin = true;
-?>
-
 <!DOCTYPE html>
 <html>
 
