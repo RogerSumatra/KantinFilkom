@@ -1,6 +1,5 @@
 <?php
-$toko = 7;
-$isLoggedin = false;
+$isLoggedin = true;
 ?>
 
 <!DOCTYPE html>
@@ -78,18 +77,18 @@ $isLoggedin = false;
             <h1>Daftar Toko</h1>
         </div>
         <div class="row justify-content-center d-flex">
-            @for ($id_toko = 0; $id_toko < $toko; $id_toko++)
+            @foreach($toko as $item)
                 <div class="col-md-4">
-                    <a href="{{ url('/menu') }}" class="card-link">
+                    <a href="{{ url('/menu', $item->id)}}" class="card-link">
                         <div class="card mb-4">
                             <img src="img/HomepageTop.png" class="card-img-top" alt="Toko Logo">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
+                                <h5 class="card-title">{{$item->nama_toko}}</h5>
                             </div>
                         </div>
                     </a>
                 </div>
-            @endfor
+            @endforeach
 
 
 

@@ -13,4 +13,8 @@ class MenuController extends Controller
         $menus = Menu::where('name', 'like', "%{$query}%")->get();
         return view('menus.search', compact('menus'));
     }
+
+    public function addMenu() {
+        
+    }
 }

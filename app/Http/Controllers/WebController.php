@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Seller;
+use App\Models\Menu;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
-    public function test()
-    {
-        return view('web.homepage');
-    }
-
     public function index()
     {
-        $toko = 5; // atau logika Anda untuk menentukan jumlah toko
-        return view('homepage', compact('toko'));
+        $toko = Seller::all();
+        return view('web.homepage', compact('toko'));
     }
 
+    public function menu($id)
+    {
+        $toko = Seller::find($id);
+        $menu = Menu::where('seller_id', $id)->get();
+        return view('web.menu', compact('menu', 'toko'));
+    }
 }
