@@ -80,11 +80,19 @@ $item = 5;
             <div id="navbar">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        <a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <img src="img/list.png" alt="" width="25px">
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <img src="img/cart.png" alt="" width="25px">
                         </button>
                     </li>
                     <li class="nav-item dropdown">
+                        <a class="nav-link" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="img/profile.png" alt="" width="25px">
+                        </a>
                         <a class="nav-link" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="img/profile.png" alt="" width="25px">
                         </a>
