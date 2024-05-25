@@ -16,7 +16,7 @@ Route::get('/menu/{id}', [WebController::class, 'menu'])->name('menu');
 //Route::get('/', [SellerController::class, 'index'])->name('sellers.index');
 Route::get('/sellers/{seller}', [SellerController::class, 'show'])->name('sellers.show');
 
-Route::post('/search', [MenuController::class, 'search'])->name('menus.search');
+Route::get('/search', [MenuController::class, 'search'])->name('menus.search');
 
 Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

@@ -74,7 +74,7 @@
                 <br>
                 <a href="homepage.php"><button type="button" class="btn btn-light btn-login">Login</button></a>
                 <br>
-                <a href="signup.php">Tidak punya akun? buat sekarang</a>
+                <a href="{{ route('register')}}">Tidak punya akun? buat sekarang</a>
             </div>
             <div class="col-md-6 blank-content"></div>
         </div>

@@ -53,19 +53,14 @@ $isLoggedin = true;
 <body>
 
     @auth
-        @include('web.navbar.loggedin')
+        @include('web.loggedin')
     @else
-        @include('web.navbar.default')
+        @include('web.default')
     @endauth
 
-    <!-- @if ($isLoggedin)
-        @include('web.navbar.loggedin')
-    @else
-        @include('web.navbar.default')
-    @endif -->
 
     <div>
-        <form class="search-container d-flex" role="search" action="SearchResult.php" method="GET">
+        <form class="search-container d-flex" role="search" action="{{route('menus.search')}}" method="GET">
             <input class="form-control me-2" type="search" placeholder="Mau makan apa?" aria-label="Search"
                 name="query">
             <button class="btn btn-outline-success" type="submit">Search</button>
