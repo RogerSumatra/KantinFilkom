@@ -85,14 +85,12 @@ $item = 5;
                         </button>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="img/profile.png" alt="" width="25px">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Logout</a></li>
                         </ul>
-                    </li>
-                    <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
