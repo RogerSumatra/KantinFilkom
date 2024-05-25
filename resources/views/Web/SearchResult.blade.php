@@ -1,11 +1,3 @@
-<?php
-$search_res = 3;
-$harga_menu = "eek";
-$nama_menu = "nama menu eek";
-$nama_toko = "modol";
-?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -47,7 +39,7 @@ $nama_toko = "modol";
     @else
         @include('web.default')
     @endauth
-    
+
     <div>
         <form class="search-container d-flex" role="search" action="{{route('menus.search')}}" method="GET">
             <input class="form-control me-2" type="search" placeholder="Mau makan apa?" aria-label="Search"
