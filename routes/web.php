@@ -25,7 +25,7 @@ Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('web.homepage');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

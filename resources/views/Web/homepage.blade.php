@@ -53,11 +53,17 @@ $isLoggedin = false;
 
 <body>
 
-    @if ($isLoggedin)
+    @auth
         @include('web.navbar.loggedin')
     @else
         @include('web.navbar.default')
-    @endif
+    @endauth
+
+    <!-- @if ($isLoggedin)
+        @include('web.navbar.loggedin')
+    @else
+        @include('web.navbar.default')
+    @endif -->
 
     <div>
         <form class="search-container d-flex" role="search" action="SearchResult.php" method="GET">
