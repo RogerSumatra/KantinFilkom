@@ -1,10 +1,3 @@
-<?php
-$nama_toko = "didi";
-$total_harga = "eek";
-$item = 5;
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +13,7 @@ $item = 5;
 
     <style>
         .back-btn {
+            margin: 20px 0px 20px 20px;
             width: 50px;
         }
 
@@ -54,11 +48,11 @@ $item = 5;
 
 <body>
     <main>
-    
+        <a href="">
+            <img src="/resources/img/back.png" alt="" class="back-btn">
+        </a>
         <div class="container-lg">
-            <a href="">
-                <img src="/resources/img/back.png" alt="" class="back-btn">
-            </a>
+
             <div class="header-pembayaran">
 
                 <h3 class="nama-toko">
