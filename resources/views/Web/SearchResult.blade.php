@@ -46,7 +46,6 @@ $nama_toko = "modol";
     </div>
 
     <h3 class="search-text">
-
         Toko yang memiliki "{{$query}}"
     </h3>
 
