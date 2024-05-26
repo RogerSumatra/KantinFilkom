@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card-body text-end">
-                                <button class="btn btn-outline-success" type="submit">Lihat Toko</button>
+                                <a href="{{ route('seller', $tokos->id) }}"><button class="btn btn-outline-success" type="submit">Lihat Toko</button></a>
                             </div>
                         </div>
                     </div>
