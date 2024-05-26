@@ -12,7 +12,7 @@
         </script>
 
     <style>
-        .nav-pills{
+        .nav-pills {
             width: 80%;
             margin: auto;
             margin-bottom: 10px !important;
@@ -155,8 +155,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="align-items-center">
-                                        <button class="btn btn-outline-success btn-tambah" data-menu-id="{{ $item->id }}"
-                                            type="submit">Tambah</button>
+                                        @if ($is_open)
+                                            <button class="btn btn-outline-success btn-tambah" data-menu-id="{{ $item->id }}"
+                                                type="submit">Tambah</button>
+                                        @endif
                                         <button class="btn btn-outline-success btn-min" data-menu-id="{{ $item->id }}"
                                             type="submit" style="display:none;">
                                             <h6>-</h6>
@@ -197,8 +199,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="align-items-center">
-                                        <button class="btn btn-outline-success btn-tambah" data-menu-id="{{ $item->id }}"
-                                            type="submit">Tambah</button>
+                                        @if ($is_open)
+                                            <button class="btn btn-outline-success btn-tambah" data-menu-id="{{ $item->id }}"
+                                                type="submit">Tambah</button>
+                                        @endif
                                         <button class="btn btn-outline-success btn-min" data-menu-id="{{ $item->id }}"
                                             type="submit" style="display:none;">
                                             <h6>-</h6>
@@ -247,7 +251,12 @@
         // Event listener untuk tombol "Tambah"
         $(document).on('click', '.btn-tambah', function () {
             const menuId = $(this).data('menu-id');
-            addToCart(menuId);
+            if (userId) {
+                addToCart(menuId);
+            } else {
+                // Jika pengguna belum login, arahkan ke halaman login
+                window.location.href = '{{ route("login") }}';
+            }
         });
 
         // Event listener untuk tombol plus dan minus untuk memperbarui jumlah item
