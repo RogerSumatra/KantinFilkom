@@ -10,15 +10,20 @@ $item = 5;
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
     <style>
+        .nav-link:hover {
+            background-color: black;
+            color: white;
+        }
+        
         .nav-link {
             justify-content: center;
             display: flex;
             border-radius: 15px;
-            width: 50px;
+            width: 100px;
         }
 
         .navbar-nav {
@@ -89,25 +94,8 @@ $item = 5;
                             <img src="img/cart.png" alt="" width="25px">
                         </button>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="img/profile.png" alt="" width="25px">
-                        </a>
-                        <a class="nav-link" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="img/profile.png" alt="" width="25px">
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
-                        </ul>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}">Log Out</a>
                     </li>
                 </ul>
             </div>
