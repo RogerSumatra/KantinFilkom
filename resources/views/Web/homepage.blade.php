@@ -54,36 +54,37 @@
         @include('web.default')
     @endauth
 
-
-    <div>
-        <form class="search-container d-flex" role="search" action="{{route('menus.search')}}" method="GET">
-            <input class="form-control me-2" type="search" placeholder="Mau makan apa?" aria-label="Search"
-                name="query">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-
-    <div class="container text-center">
-        <div class="row daftar-toko">
-            <h1>Daftar Toko</h1>
+    <div class="container">
+        <div>
+            <form class="search-container d-flex" role="search" action="{{ route('menus.search') }}" method="GET">
+                <input class="form-control me-2" type="search" placeholder="Mau makan apa?" aria-label="Search"
+                    name="query">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
-        <div class="row justify-content-center d-flex">
-            @foreach($toko as $item)
-                <div class="col-md-4">
-                    <a href="{{ url('/menu', $item->id)}}" class="card-link">
-                        <div class="card mb-4">
-                            <img src="{{ asset($item->picture) }}" class="card-img-top" alt="Toko Logo">
-                            <div class="card-body">
-                                <h5 class="card-titleg">{{$item->nama_toko}}</h5>
+
+        <div class="container text-center">
+            <div class="row daftar-toko">
+                <h1>Daftar Toko</h1>
+            </div>
+            <div class="row justify-content-center d-flex">
+                @foreach ($toko as $item)
+                    <div class="col-md-4">
+                        <a href="{{ url('/menu', $item->id) }}" class="card-link">
+                            <div class="card mb-4">
+                                <img src="{{ asset($item->picture) }}" class="card-img-top" alt="Toko Logo">
+                                <div class="card-body">
+                                    <h5 class="card-titleg">{{ $item->nama_toko }}</h5>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
+                        </a>
+                    </div>
+                @endforeach
 
+            </div>
         </div>
+        <div class="footer"></div>
     </div>
-    <div class="footer"></div>
 
 
 </body>

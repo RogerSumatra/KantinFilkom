@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Seller;
 use App\Models\Menu;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DateTime;
 use DateTimeZone;
@@ -14,10 +15,18 @@ class WebController extends Controller
 {
     public function index()
     {
-        $item = Item::where('user_id', '');
+        $user = Auth::user();
+        $item = Item::where('user_id',);
         $toko = Seller::all();
         return view('web.homepage', compact('toko'));
        
+    }
+
+    public function pembayaran($item)
+    {
+        $menu = Menu::where('id', $item->menu_id)->get();
+        $toko = Seller::where('id', $menu->seller_id)->get();
+        return view('web.konfirmasiPembayaran', compact('item', 'toko'));
     }
 
     public function get_seller($id)

@@ -9,6 +9,12 @@
     </script>
 
     <style>
+        .nav-pills{
+            width: 80%;
+            margin: auto;
+            margin-bottom: 10px !important;
+        }
+
         .toko-image {
             width: 65%;
             margin: auto;
