@@ -29,12 +29,8 @@
 
         .nav-item {
             margin-right: 10px;
-        }
-
-        .nav-pills {
-            margin: auto;
-            width: 75%;
-            margin-bottom: 20px;
+            margin-top: auto; 
+            margin-bottom: auto; 
         }
     </style>
 </head>
