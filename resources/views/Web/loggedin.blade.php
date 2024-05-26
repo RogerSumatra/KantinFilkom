@@ -33,6 +33,7 @@ $item = 5;
 
         .nav-item {
             margin-right: 10px;
+            margin-left: 10px;
         }
 
         .nav-pills {
@@ -86,7 +87,7 @@ $item = 5;
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a type="button" href="pesanan.php">
-                            <img src="{{asset ('img/list.png')}}" alt="" width="25px">
+                            <img src="{{asset ('img/list.png')}}" alt="" width="35px">
                         </a>
                     </li>
                     <li class="nav-item">
