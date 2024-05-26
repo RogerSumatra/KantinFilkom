@@ -14,7 +14,7 @@
     <style>
         .back-btn {
             margin: 20px 0px 20px 20px;
-            width: 50px;--  
+            width: 50px;
 
         .header-pembayaran {
             margin: 80px 0px 100px 0px;
