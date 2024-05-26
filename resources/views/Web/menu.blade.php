@@ -3,11 +3,9 @@
 
 <head>
     <title>Kantin FILKOM | Homepage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
     <style>
@@ -89,9 +87,9 @@
 <body>
 
     @auth
-        @include('web.loggedin')
+    @include('web.loggedin')
     @else
-        @include('web.default')
+    @include('web.default')
     @endauth
 
     <div class="toko-image">
@@ -140,7 +138,15 @@
                                         <h5 class="card-title">{{ $item->menus_name }}</h5>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
-                                            <button class="btn btn-outline-success" type="submit">Tambah</button>
+                                            <button class="btn btn-outline-success btn-tambah" type="submit">Tambah</button>
+                                            <button class="btn btn-outline-success btn-min" type="submit">
+                                                <h6>-</h6>
+                                            </button>
+                                            <h5></h5>
+                                            <button class="btn btn-outline-success btn-pls" type="submit">
+                                                <h6>+</h6>
+
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +187,49 @@
         </div>
     </div>
 
-    <div class="footer"></div>
+    <script>
+        // Ambil referensi tombol-tambah
+        const btnTambah = document.querySelector('.btn-tambah');
+
+        // Ambil referensi tombol-min
+        const btnMin = document.querySelector('.btn-min');
+
+        // Ambil referensi tombol-pls
+        const btnPls = document.querySelector('.btn-pls');
+
+        // Ambil referensi elemen yang menampilkan jumlah item
+        const jumlahItem = document.querySelector('h5');
+
+        // Inisialisasi jumlah item
+        let itemCounter = 1;
+
+        // Fungsi untuk mengubah tampilan tombol
+        function toggleButtons() {
+            btnTambah.style.display = 'none';
+            btnMin.style.display = 'block';
+            btnPls.style.display = 'block';
+        }
+
+        // Event listener untuk tombol-tambah
+        btnTambah.addEventListener('click', () => {
+            toggleButtons();
+            jumlahItem.textContent = itemCounter;
+        });
+
+        // Event listener untuk tombol-min
+        btnMin.addEventListener('click', () => {
+            if (itemCounter > 1) {
+                itemCounter--;
+                jumlahItem.textContent = itemCounter;
+            }
+        });
+
+        // Event listener untuk tombol-pls
+        btnPls.addEventListener('click', () => {
+            itemCounter++;
+            jumlahItem.textContent = itemCounter;
+        });
+    </script>
 </body>
 
 </html>
