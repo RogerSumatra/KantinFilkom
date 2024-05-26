@@ -1,12 +1,3 @@
-<?php
-$makanan = 20;
-$minuman = 20;
-$makanan_string = 'ayam';
-$toko_status = 'buka';
-$jam_buka = '8.00 - 16.00';
-$isLoggedIn = isset($_SESSION['user_id']);
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +24,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
             height: 100%;
             border-radius: 20px;
         }
-
 
         .border {
             margin: auto;
@@ -104,95 +94,93 @@ $isLoggedIn = isset($_SESSION['user_id']);
         @include('web.default')
     @endauth
 
-
     <div class="toko-image">
-        <img src="img/HomepageTop.png" alt="">
+        <img src="{{ asset($toko->picture) }}" alt="">
     </div>
 
     <div class="toko-info">
-        <h3>Nama Toko</h3>
+        <h3>{{ $toko->name }}</h3>
         <div class="jam-buka">
             <div class="status-buka">
-                
-                @if ($toko->jam_buka == 'buka')
-                {
+                @if ($is_open)
                 <h3 style="background-color: green;">Buka</h3>
-                }
-                @elseif ($toko->jam_buka == 'tutup')
-                {
-                <h3 style="background-color: red;">Tutup</h3>'
-                }
+                @else
+                <h3 style="background-color: red;">Tutup</h3>
                 @endif
             </div>
-
-            <h3>{{ $toko->jam_buka }}</h3>
-
+            <h3>{{ $jam_operasional }}</h3>
         </div>
     </div>
 
     <div class="border"></div>
 
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" href="#scrollspyHeading1">
-                <h5>Makanan</h5>
-            </a>
+    <ul class="nav nav-pills" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="makanan-tab" data-bs-toggle="tab" data-bs-target="#makanan" type="button" role="tab" aria-controls="makanan" aria-selected="true">Makanan</button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#scrollspyHeading2">
-                <h5>Minuman</h5>
-            </a>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="minuman-tab" data-bs-toggle="tab" data-bs-target="#minuman" type="button" role="tab" aria-controls="minuman" aria-selected="false">Minuman</button>
         </li>
     </ul>
 
-    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
-        data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
-        <h4 id="    ">Makanan</h4>
-        <div class="row justify-content-center d-flex" id="scrollspyHeading1">
-            @foreach ($menu as $item)
-                <div class="col-md-6">
-                    <div class="card mb-4">
-                        <div class="row">
-                            <div class="menu-image col-md-6">
-                                <img src="img/HomepageTop.png" class="card-img" alt="...">
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">{{ $item->menus_name }}</h5>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
-                                        <button class="btn btn-outline-success" type="submit">Tambah</button>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="makanan" role="tabpanel" aria-labelledby="makanan-tab">
+            <div class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+                <h4 id="scrollspyHeading1">Makanan</h4>
+                <div class="row justify-content-center d-flex">
+                    @foreach ($makanan as $item)
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="row">
+                                <div class="menu-image col-md-6">
+                                    <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Makanan">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">{{ $item->menus_name }}</h5>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
+                                            <button class="btn btn-outline-success" type="submit">Tambah</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
         </div>
 
-        {{-- <h4 id="">Minuman</h4>
-        <div class="row justify-content-center d-flex" id="scrollspyHeading2">
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="row">
-                        <div class="menu-image col-md-6">
-                            <img src="img/HomepageTop.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Card title</h5>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <p class="m-0">harga</p>
-                                    <button class="btn btn-outline-success" type="submit">Tambah</button>
+        <div class="tab-pane fade" id="minuman" role="tabpanel" aria-labelledby="minuman-tab">
+            <div class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+                <h4 id="scrollspyHeading2">Minuman</h4>
+                <div class="row justify-content-center d-flex">
+                    @foreach ($minuman as $item)
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="row">
+                                <div class="menu-image col-md-6">
+                                    <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Minuman">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">{{ $item->menus_name }}</h5>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
+                                            <button class="btn btn-outline-success" type="submit">Tambah</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
+
     <div class="footer"></div>
 </body>
 

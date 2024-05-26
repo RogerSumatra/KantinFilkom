@@ -72,7 +72,7 @@
                 <div class="col-md-4">
                     <a href="{{ url('/menu', $item->id)}}" class="card-link">
                         <div class="card mb-4">
-                            <img src="img/HomepageTop.png" class="card-img-top" alt="Toko Logo">
+                            <img src="{{ asset($item->picture) }}" class="card-img-top" alt="Toko Logo">
                             <div class="card-body">
                                 <h5 class="card-title">{{$item->nama_toko}}</h5>
                             </div>

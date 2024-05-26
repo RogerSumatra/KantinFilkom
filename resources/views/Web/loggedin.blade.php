@@ -75,7 +75,7 @@ $item = 5;
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="Homepage.php">
-                <img src="img/Logo.png" alt="Kantin FILKOM" width="80px">
+                <img src="{{ asset('img/Logo.png') }}" alt="Kantin FILKOM" width="80px">
             </a>
             <div id="navbar">
                 <ul class="navbar-nav ms-auto">

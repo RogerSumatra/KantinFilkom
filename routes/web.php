@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class, 'index'])->name('homepage');
 
-Route::get('/menu/{id}', [WebController::class, 'menu'])->name('menu');
+Route::get('/menu/{id}', [WebController::class, 'get_seller'])->name('seller');
 
 //Route::get('/', [SellerController::class, 'index'])->name('sellers.index');
-Route::get('/sellers/{seller}', [SellerController::class, 'show'])->name('sellers.show');
+//Route::get('/sellers/{seller}', [SellerController::class, 'show'])->name('sellers.show');
 
 Route::get('/search', [MenuController::class, 'search'])->name('menus.search');
 
