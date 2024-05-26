@@ -11,14 +11,14 @@ $item = 5;
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
 
     <style>
         .nav-link:hover {
             background-color: black;
             color: white;
         }
-        
+
         .nav-link {
             justify-content: center;
             display: flex;
@@ -87,16 +87,22 @@ $item = 5;
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a type="button" href="pesanan.php">
-                            <img src="{{asset ('img/list.png')}}" alt="" width="35px">
+                            <img src="{{asset('img/list.png')}}" alt="" width="35px">
                         </a>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img src="{{asset ('img/cart.png')}}" alt="" width="25px">
+                            <img src="{{asset('img/cart.png')}}" alt="" width="25px">
                         </button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Log Out</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a class="nav-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Log Out
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -113,8 +119,8 @@ $item = 5;
                 <div class="modal-body">
                     <div class="row justify-content-center d-flex px-3">
                         <?php
-                        for ($x = 0; $x < $item; $x++) {
-                            echo '<div class="card mb-4">
+for ($x = 0; $x < $item; $x++) {
+    echo '<div class="card mb-4">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div>
@@ -143,7 +149,7 @@ $item = 5;
                                 </div>
                             </div>
                         </div>';
-                        }
+}
                         ?>
 
                     </div>
