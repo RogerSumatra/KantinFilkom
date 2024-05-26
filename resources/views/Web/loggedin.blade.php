@@ -79,7 +79,7 @@ $item = 5;
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Homepage.php">
+            <a class="navbar-brand" href="{{route('homepage')}}">
                 <img src="{{ asset('img/Logo.png') }}" alt="Kantin FILKOM" width="80px">
             </a>
             <div id="navbar">
