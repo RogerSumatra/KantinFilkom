@@ -1,9 +1,3 @@
-<?php
-$item = 1;
-$subtotal = 0;
-
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -169,12 +163,12 @@ $subtotal = 0;
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div>
-                                            <h5 class="text-nama">${item.menu.name}</h5>
+                                            <h5 class="text-nama">${item.menu.menus_name}</h5>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="menu-image">
-                                            <img src="${item.menu.image}" class="card-img" alt="${item.menu.name}">
+                                            <img src="${item.menu.images}" class="card-img" alt="${item.menu.menus_name}">
                                         </div>
                                     </div>
                                 </div>

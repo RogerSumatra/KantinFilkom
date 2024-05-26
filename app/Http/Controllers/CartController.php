@@ -58,6 +58,11 @@ class CartController extends Controller
     {
         $items = Item::where('user_id', Auth::id())->with('menu')->get();
 
+        $items->transform(function ($item) {
+            $item->menu->images = asset($item->menu->images);
+            return $item;
+        });
+
         return response()->json(['items' => $items], 200);
     }
 
