@@ -86,12 +86,12 @@ $item = 5;
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a type="button" href="pesanan.php">
-                            <img src="img/list.png" alt="" width="25px">
+                            <img src="{{asset ('img/list.png')}}" alt="" width="25px">
                         </a>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img src="img/cart.png" alt="" width="25px">
+                            <img src="{{asset ('img/cart.png')}}" alt="" width="25px">
                         </button>
                     </li>
                     <li class="nav-item">

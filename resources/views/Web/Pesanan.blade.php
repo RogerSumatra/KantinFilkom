@@ -53,7 +53,7 @@ $item = 5;
                     <div class="card mb-4">
                         <div class="row">
                             <div class="menu-image col-md-6">
-                                <img src="img/HomepageTop.png" class="card-img" alt="...">
+                                <img src="{{$menus->picture}}" class="card-img" alt="...">
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body text-center">

@@ -48,7 +48,7 @@
 <body>
     <main>
         <a href="">
-            <img src="/resources/img/back.png" alt="" class="back-btn">
+            <img src="{{asset ('img/back.png')}}" alt="" class="back-btn">
         </a>
         <div class="container-lg">
 
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <a href="">
-                    <img src="/resources/img/membayar.png" alt="" class="membayar-btn">
+                    <img src="{{asset ('img/membayar.png')}}" alt="" class="membayar-btn">
                 </a>
 
                 </a>
