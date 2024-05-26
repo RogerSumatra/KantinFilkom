@@ -14,7 +14,7 @@ Route::get('/', [WebController::class, 'index'])->name('homepage');
 Route::get('/menu/{id}', [WebController::class, 'get_seller'])->name('seller');
 
 
-Route::post('/pembayaran', [WebController::class, 'pembayaran'])->name('konfirmasipembayaran');
+Route::get('/pembayaran', [WebController::class, 'konfirmasiPembayaran'])->name('konfirmasiPembayaran');
 
 
 //Route::get('/', [SellerController::class, 'index'])->name('sellers.index');

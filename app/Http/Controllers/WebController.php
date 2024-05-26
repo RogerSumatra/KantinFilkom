@@ -16,26 +16,38 @@ class WebController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $item = Item::where('user_id', $user)->get();
+        $item = Item::where('user_id', $user->id)->get();
         $toko = Seller::all();
         return view('web.homepage', compact('toko', 'item'));
-
     }
 
-    public function pembayaran(Request $request)
+    public function konfirmasiPembayaran(Request $request)
     {
-        $itemId = $request->input('item_id');
-        $menu = Menu::find($itemId);
-        $toko = Seller::find($menu->seller_id);
-        return view('web.konfirmasiPembayaran', compact('menu', 'toko'));
+        $userId = Auth::id();
+        $cartItems = Item::where('user_id', $userId)->get();
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('homepage')->with('error', 'Keranjang anda kosong');
+        }
+
+        $subtotal = $cartItems->sum(function ($item) {
+            return $item->menu->price * $item->quantity;
+        });
+
+        $ppn = $subtotal * 0.1; //PPN 10%
+        $totalHarga = $subtotal + $ppn;
+
+        $toko = Seller::find($cartItems->first()->menu->seller_id);
+
+        return view('web.konfirmasiPembayaran', compact('cartItems', 'subtotal', 'ppn', 'totalHarga', 'toko'));
     }
 
     public function get_seller($id)
     {
         $user = Auth::user();
-        $item = Item::where('user_id', $user)->get();
+        $item = Item::where('user_id', $user->id)->get(); // Menggunakan id user
 
-        //Time zone sekarang
+        // Time zone sekarang
         $now = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
         $current_time = $now->format('H:i');
 
@@ -52,6 +64,6 @@ class WebController extends Controller
         $makanan = Menu::where('seller_id', $id)->where('types', 'Makanan')->get();
         $minuman = Menu::where('seller_id', $id)->where('types', 'Minuman')->get();
 
-        return view('web.menu', compact('toko', 'makanan', 'minuman', 'jam_operasional', 'is_open', 'item', 'item'));
+        return view('web.menu', compact('toko', 'makanan', 'minuman', 'jam_operasional', 'is_open', 'item'));
     }
 }

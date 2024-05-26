@@ -1,88 +1,52 @@
+<!-- resources/views/web/konfirmasiPembayaran.blade.php -->
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konfirmasi</title>
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <title>Konfirmasi Pembayaran</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .back-btn {
-            margin: 20px 0px 20px 20px;
-            width: 50px;
-
-        .header-pembayaran {
-            margin: 80px 0px 100px 0px;
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        .subtotal {
-            margin-bottom: 10px;
-            justify-content: end;
-        }
-
-        .pajak {
-            margin-bottom: 10px;
-            justify-content: end;
-        }
-
-        .total {
-            border-top: 1px solid black;
-            margin-bottom: 10px;
-            justify-content: end;
-        }
-
-        .membayar-btn {
-
-            margin-top: 100px;
-            width: 700px;
+        .btn-pay {
+            display: block;
+            width: 100%;
+            background-color: #ff4d4d;
+            border: none;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
         }
     </style>
-
 </head>
-
 <body>
-    <main>
-        <a href="">
-            <img src="{{asset ('img/back.png')}}" alt="" class="back-btn">
-        </a>
-        <div class="container-lg">
-
-            <div class="header-pembayaran">
-
-                <h3 class="nama-toko">
-                    "{{$toko}}"
-                </h3>
-                <p>
-                    Silahkan lanjut ke pembayaran
-                </p>
-
-            </div>
-            <div class="content">
-                <div class="container-lg">
-                    <div class="row subtotal">
-                        {{$item->menus_price}}
-                    </div>
-                    <div class="row pajak">
-                        <!-- please fix this :3 -->
-                        {{$item->menus_price}} *10
-                    </div>
-                    <div class="row total">
-                        {{$item->total}}
-                    </div>
-                </div>
-                <a href="">
-                    <img src="{{asset ('img/membayar.png')}}" alt="" class="membayar-btn">
-                </a>
-
-                </a>
-            </div>
-    </main>
-
+    <div class="container">
+        <h1 class="text-center">{{ $toko->nama_toko }}</h1>
+        <p class="text-center">Silahkan lanjut ke pembayaran</p>
+        <hr>
+        <div class="d-flex justify-content-between">
+            <span>Subtotal</span>
+            <span>Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
+        </div>
+        <div class="d-flex justify-content-between">
+            <span>PPN</span>
+            <span>Rp {{ number_format($ppn, 0, ',', '.') }}</span>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between">
+            <strong>Total Harga</strong>
+            <strong>Rp {{ number_format($totalHarga, 0, ',', '.') }}</strong>
+        </div>
+        <button class="btn-pay" onclick="prosesPembayaran()">Klik untuk membayar</button>
+    </div>
 </body>
-
 </html>
