@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Seller;
 use App\Models\Menu;
+use App\Models\History;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use DateTime;
 use DateTimeZone;
 
@@ -27,31 +29,41 @@ class WebController extends Controller
     }
 
     public function konfirmasiPembayaran(Request $request)
-    {
-        $userId = Auth::id();
-        $cartItems = Item::where('user_id', $userId)->get();
+{
+    $userId = Auth::id();
+    $cartItems = Item::where('user_id', $userId)->get();
 
-        if ($cartItems->isEmpty()) {
-            return redirect()->route('homepage')->with('error', 'Keranjang anda kosong');
+    if ($cartItems->isEmpty()) {
+        return redirect()->route('homepage')->with('error', 'Keranjang anda kosong');
+    }
+
+    $subtotal = $cartItems->sum(function ($item) {
+        return $item->menu->price * $item->quantity;
+    });
+
+    $ppn = $subtotal * 0.1; //PPN 10%
+    $totalHarga = $subtotal + $ppn;
+
+    $toko = Seller::find($cartItems->first()->menu->seller_id);
+
+    // Simpan transaksi
+    DB::transaction(function () use ($userId, $cartItems, $totalHarga) {
+        foreach ($cartItems as $item) {
+            History::create([
+                'user_id' => $userId,
+                'menu_id' => $item->menu->id,
+                'quantity' => $item->quantity,
+                'total_price' => $totalHarga,
+                'status' => 'confirmed'
+            ]);
+
+            // Hapus item dari keranjang setelah konfirmasi pembayaran
+            $item->delete();
         }
+    });
 
-        $subtotal = $cartItems->sum(function ($item) {
-            return $item->menu->price * $item->quantity;
-        });
-
-        $ppn = $subtotal * 0.1; //PPN 10%
-        $totalHarga = $subtotal + $ppn;
-
-        $toko = Seller::find($cartItems->first()->menu->seller_id);
-
-        return view('web.konfirmasiPembayaran', compact('cartItems', 'subtotal', 'ppn', 'totalHarga', 'toko'));
-    }
-
-    public function pesanan()
-    {
-        
-        return view('web.pesanan');
-    }
+    return view('web.konfirmasiPembayaran', compact('cartItems', 'subtotal', 'ppn', 'totalHarga', 'toko'));
+}
 
     public function get_seller($id)
     {

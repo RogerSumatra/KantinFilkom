@@ -81,7 +81,7 @@
             <div id="navbar">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a type="button" href="{{ route('pesanan') }}">
+                        <a type="button" href="{{ route('history') }}">
                             <img src="{{ asset('img/list.png') }}" alt="" width="25px">
                         </a>
                     </li>
@@ -129,7 +129,7 @@
             $('#confirm-order').on('click', function () {
                 window.location.href = '{{ route("konfirmasiPembayaran") }}';
             });
-            
+
             // Memuat item di keranjang saat modal dibuka
             $('#exampleModal').on('show.bs.modal', function () {
                 loadCartItems();

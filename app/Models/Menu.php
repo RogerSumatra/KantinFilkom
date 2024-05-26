@@ -16,4 +16,9 @@ class Menu extends Model
         'price',
         'images',
     ];
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class, 'seller_id');
+    }
 }
