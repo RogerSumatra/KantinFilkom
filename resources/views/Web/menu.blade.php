@@ -3,7 +3,7 @@
 
 <head>
     <meta name="user-id" content="{{ Auth::id() }}">
-    <title>Kantin FILKOM | Homepage</title>
+    <title>Kantin FILKOM | Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -191,8 +191,6 @@
                                             <h5 class="card-title">{{ $item->menus_name }}</h5>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
-                                                <button class="btn btn-outline-success btn-tambah"
-                                                    data-menu-id="{{ $item->id }}" type="submit">Tambah</button>
                                             </div>
                                         </div>
                                     </div>
