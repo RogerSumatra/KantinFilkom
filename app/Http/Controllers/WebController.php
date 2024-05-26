@@ -55,7 +55,7 @@ class WebController extends Controller
     public function get_seller($id)
     {
         $user = Auth::user();
-        $item = Item::where('user_id', $user->id)->get(); // Menggunakan id user
+        $item = Item::where('user_id', $user)->get();
 
         // Time zone sekarang
         $now = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
