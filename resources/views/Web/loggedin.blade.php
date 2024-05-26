@@ -1,17 +1,17 @@
 <?php
 $item = 5;
+$subtotal;
+
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
     <style>
         .nav-link:hover {
@@ -99,8 +99,7 @@ $item = 5;
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        <a class="nav-link" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Log Out
                         </a>
                     </li>
@@ -119,8 +118,8 @@ $item = 5;
                 <div class="modal-body">
                     <div class="row justify-content-center d-flex px-3">
                         <?php
-for ($x = 0; $x < $item; $x++) {
-    echo '<div class="card mb-4">
+                        for ($x = 0; $x < $item; $x++) {
+                            echo '<div class="card mb-4">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div>
@@ -149,13 +148,21 @@ for ($x = 0; $x < $item; $x++) {
                                 </div>
                             </div>
                         </div>';
-}
+                        }
                         ?>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Konfirmasi Pesanan</button>
+                        <span class="subtotal-harga">
+                            @foreach ($item as $items)
+                            $subtotal=$subtotal+$item->price
+                            
+                            @endforeach
+                        </span>
+                        <button type="button" class="btn btn-primary">
+                            {{route('konfirmasipembayaran', 'eek')}}
+                            lanjut ke pembayaran
+                        </button>
                     </div>
                 </div>
             </div>
