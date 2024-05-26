@@ -47,7 +47,9 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="order-img"></div>
+                                <div class="order-img">
+                                    <img src="{{ asset($transaction->menu->images) }}" class="card-img" alt="Gambar Makanan">
+                                </div>
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">
