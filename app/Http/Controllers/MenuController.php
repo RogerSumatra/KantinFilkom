@@ -22,12 +22,20 @@ class MenuController extends Controller
         // Ambil data toko berdasarkan seller_id
         $toko = Seller::whereIn('id', $sellerIds)->get();
 
-    
+        // Implementasi open or nor
+        $is_open = $this->checkIfOpen($toko); 
 
-        return view('web.searchresult', compact('menus', 'toko', 'query'));
+        return view('web.searchresult', compact('menus', 'toko', 'query', 'is_open'));
     }
 
-    public function addMenu() {
-        
+    private function checkIfOpen($toko)
+    {
+        foreach ($toko as $store) {
+            // Misalkan kita punya field "is_open" di tabel toko
+            if (!$store->is_open) {
+                return false;
+            }
+        }
+        return true;
     }
 }
