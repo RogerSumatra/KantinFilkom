@@ -7,7 +7,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
 
     <style>
         .nav-link:hover {
@@ -114,34 +116,41 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Konfirmasi Pesanan</button>
+                    <span id="modalfooter">
+
+                    </span>
+                    <form id="confirmation-form" action="{{ route('konfirmasipembayaran') }}" method="POST">
+                        <input type="hidden" id="cart-items-data" name="cart_items_data">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Konfirmasi Pesanan</button>
+                    </form>
+
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Memuat item di keranjang saat modal dibuka
-            $('#exampleModal').on('show.bs.modal', function () {
+            $('#exampleModal').on('show.bs.modal', function() {
                 loadCartItems();
             });
 
             // Menambahkan item ke keranjang
-            $('.add-to-cart').on('click', function () {
+            $('.add-to-cart').on('click', function() {
                 var menuId = $(this).data('menu-id');
                 var quantity = $(this).data('quantity');
 
                 $.ajax({
-                    url: '{{ route("cart.add") }}',
+                    url: '{{ route('cart.add') }}',
                     method: 'POST',
                     data: {
                         menu_id: menuId,
                         quantity: quantity,
                         _token: '{{ csrf_token() }}'
                     },
-                    success: function (response) {
+                    success: function(response) {
                         alert(response.message);
                         loadCartItems();
                     }
@@ -151,13 +160,20 @@
             // Memuat item di keranjang
             function loadCartItems() {
                 $.ajax({
-                    url: '{{ route("cart.items") }}',
+                    url: '{{ route('cart.items') }}',
                     method: 'GET',
-                    success: function (response) {
+                    success: function(response) {
                         var items = response.items;
                         var cartItemsHtml = '';
+                        var modalfooter = '';
+                        var subtotal = 0;
+                        var cartItemsData = JSON.stringify(items);
 
-                        items.forEach(function (item) {
+
+                        items.forEach(function(item) {
+                            subtotal += item.menu.price * item
+                                .quantity; // assuming 'price' and 'quantity' are correct fields
+
                             cartItemsHtml += `
                             <div class="card mb-4">
                                 <div class="row">
@@ -174,7 +190,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="text-harga col-md-8">
-                                        ${item.menu.price}
+                                        ${numeral(item.menu.price).format('0,0')}
                                     </div>
                                     <div class="card-body text-center col-md-4">
                                         <button class="btn btn-outline-success update-cart-item" data-id="${item.id}" data-quantity="${item.quantity - 1}">
@@ -192,13 +208,19 @@
                             </div>`;
                         });
 
+
+                        modalfooter += `
+                        <h5>${numeral(subtotal).format('0,0')}</h5>`;
+
                         $('#cart-items').html(cartItemsHtml);
+                        $('#modalfooter').html(modalfooter);
+                        $('#cart-items-data').val(cartItemsData);
                     }
                 });
             }
 
             // Memperbarui item di keranjang
-            $(document).on('click', '.update-cart-item', function () {
+            $(document).on('click', '.update-cart-item', function() {
                 var itemId = $(this).data('id');
                 var quantity = $(this).data('quantity');
 
@@ -211,7 +233,7 @@
                         quantity: quantity,
                         _token: '{{ csrf_token() }}'
                     },
-                    success: function (response) {
+                    success: function(response) {
                         alert(response.message);
                         loadCartItems();
                     }
@@ -219,7 +241,7 @@
             });
 
             // Menghapus item dari keranjang
-            $(document).on('click', '.remove-cart-item', function () {
+            $(document).on('click', '.remove-cart-item', function() {
                 var itemId = $(this).data('id');
 
                 $.ajax({
@@ -228,7 +250,7 @@
                     data: {
                         _token: '{{ csrf_token() }}'
                     },
-                    success: function (response) {
+                    success: function(response) {
                         alert(response.message);
                         loadCartItems();
                     }

@@ -16,21 +16,25 @@ class WebController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $item = Item::where('user_id',);
+        $item = Item::where('user_id', $user)->get();
         $toko = Seller::all();
-        return view('web.homepage', compact('toko'));
-       
+        return view('web.homepage', compact('toko', 'item'));
+
     }
 
-    public function pembayaran($item)
+    public function pembayaran(Request $request)
     {
-        $menu = Menu::where('id', $item->menu_id)->get();
-        $toko = Seller::where('id', $menu->seller_id)->get();
-        return view('web.konfirmasiPembayaran', compact('item', 'toko'));
+        $itemId = $request->input('item_id');
+        $menu = Menu::find($itemId);
+        $toko = Seller::find($menu->seller_id);
+        return view('web.konfirmasiPembayaran', compact('menu', 'toko'));
     }
 
     public function get_seller($id)
     {
+        $user = Auth::user();
+        $item = Item::where('user_id', $user)->get();
+
         //Time zone sekarang
         $now = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
         $current_time = $now->format('H:i');
@@ -48,6 +52,6 @@ class WebController extends Controller
         $makanan = Menu::where('seller_id', $id)->where('types', 'Makanan')->get();
         $minuman = Menu::where('seller_id', $id)->where('types', 'Minuman')->get();
 
-        return view('web.menu', compact('toko', 'makanan', 'minuman', 'jam_operasional', 'is_open'));
+        return view('web.menu', compact('toko', 'makanan', 'minuman', 'jam_operasional', 'is_open', 'item', 'item'));
     }
 }
