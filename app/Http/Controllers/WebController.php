@@ -15,10 +15,15 @@ class WebController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $item = Item::where('user_id', $user->id)->get();
-        $toko = Seller::all();
-        return view('web.homepage', compact('toko', 'item'));
+        if(Auth::user() == null){
+            $toko = Seller::all();
+            return view('web.homepage', compact('toko'));
+        }else{
+            $user = Auth::user();
+            $item = Item::where('user_id', $user->id)->get();
+            $toko = Seller::all();
+            return view('web.homepage', compact('toko', 'item'));
+        }
     }
 
     public function konfirmasiPembayaran(Request $request)
@@ -40,6 +45,11 @@ class WebController extends Controller
         $toko = Seller::find($cartItems->first()->menu->seller_id);
 
         return view('web.konfirmasiPembayaran', compact('cartItems', 'subtotal', 'ppn', 'totalHarga', 'toko'));
+    }
+
+    public function selesaiBayar()
+    {
+        return view('web.selesaiPembayaran');
     }
 
     public function get_seller($id)
