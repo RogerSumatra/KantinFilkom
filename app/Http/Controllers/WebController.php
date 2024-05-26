@@ -47,9 +47,10 @@ class WebController extends Controller
         return view('web.konfirmasiPembayaran', compact('cartItems', 'subtotal', 'ppn', 'totalHarga', 'toko'));
     }
 
-    public function selesaiBayar()
+    public function pesanan()
     {
-        return view('web.selesaiPembayaran');
+        
+        return view('web.pesanan');
     }
 
     public function get_seller($id)

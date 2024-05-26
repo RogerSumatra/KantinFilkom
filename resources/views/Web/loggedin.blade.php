@@ -81,7 +81,7 @@
             <div id="navbar">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a type="button" href="pesanan.php">
+                        <a type="button" href="{{ route('pesanan') }}">
                             <img src="{{ asset('img/list.png') }}" alt="" width="25px">
                         </a>
                     </li>
