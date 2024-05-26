@@ -136,21 +136,30 @@
                                 <div class="col-md-6">
                                     <div class="card-body text-center">
                                         <h5 class="card-title">{{ $item->menus_name }}</h5>
+
                                         <div class="d-flex justify-content-between align-items-center">
                                             <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
-                                            <button class="btn btn-outline-success btn-tambah" type="submit">Tambah</button>
-                                            <button class="btn btn-outline-success btn-min" type="submit">
-                                                <h6>-</h6>
-                                            </button>
-                                            <h5></h5>
-                                            <button class="btn btn-outline-success btn-pls" type="submit">
-                                                <h6>+</h6>
 
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="align-items-center">
+                                    <button class="btn btn-outline-success btn-tambah" type="submit">Tambah</button>
+                                    <button class="btn btn-outline-success btn-min" type="submit">
+                                        <h6>-</h6>
+                                    </button>
+                                    <span class="counter-item"></span>
+
+                                    <button class="btn btn-outline-success btn-pls" type="submit">
+                                        <h6>+</h6>
+
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     @endforeach
@@ -198,7 +207,7 @@
         const btnPls = document.querySelector('.btn-pls');
 
         // Ambil referensi elemen yang menampilkan jumlah item
-        const jumlahItem = document.querySelector('h5');
+        const jumlahItem = document.querySelector('.counter-item');
 
         // Inisialisasi jumlah item
         let itemCounter = 1;

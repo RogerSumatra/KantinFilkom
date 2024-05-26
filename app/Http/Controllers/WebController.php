@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\Seller;
 use App\Models\Menu;
 use App\Http\Controllers\Controller;
@@ -13,8 +14,10 @@ class WebController extends Controller
 {
     public function index()
     {
+        $item = Item::where('user_id', '');
         $toko = Seller::all();
         return view('web.homepage', compact('toko'));
+       
     }
 
     public function get_seller($id)

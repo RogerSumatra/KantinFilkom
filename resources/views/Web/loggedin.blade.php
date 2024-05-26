@@ -1,16 +1,16 @@
 <?php
 $item = 5;
+$subtotal;
+
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
     <style>
@@ -18,7 +18,7 @@ $item = 5;
             background-color: black;
             color: white;
         }
-        
+
         .nav-link {
             justify-content: center;
             display: flex;
@@ -88,11 +88,16 @@ $item = 5;
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img src="{{asset ('img/cart.png')}}" alt="" width="25px">
+                            <img src="{{asset('img/cart.png')}}" alt="" width="25px">
                         </button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Log Out</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Log Out
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -144,8 +149,16 @@ $item = 5;
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Konfirmasi Pesanan</button>
+                        <span class="subtotal-harga">
+                            @foreach ($item as $items)
+                            $subtotal=$subtotal+$item->price
+                            
+                            @endforeach
+                        </span>
+                        <button type="button" class="btn btn-primary">
+                            {{route('konfirmasipembayaran', 'eek')}}
+                            lanjut ke pembayaran
+                        </button>
                     </div>
                 </div>
             </div>
