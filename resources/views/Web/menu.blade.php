@@ -2,11 +2,14 @@
 <html>
 
 <head>
+    <meta name="user-id" content="{{ Auth::id() }}">
     <title>Kantin FILKOM | Homepage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
 
     <style>
         .nav-pills{
@@ -93,9 +96,9 @@
 <body>
 
     @auth
-    @include('web.loggedin')
+        @include('web.loggedin')
     @else
-    @include('web.default')
+        @include('web.default')
     @endauth
 
     <div class="toko-image">
@@ -107,9 +110,9 @@
         <div class="jam-buka">
             <div class="status-buka">
                 @if ($is_open)
-                <h3 style="background-color: green;">Buka</h3>
+                    <h3 style="background-color: green;">Buka</h3>
                 @else
-                <h3 style="background-color: red;">Tutup</h3>
+                    <h3 style="background-color: red;">Tutup</h3>
                 @endif
             </div>
             <h3>{{ $jam_operasional }}</h3>
@@ -120,10 +123,12 @@
 
     <ul class="nav nav-pills" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="makanan-tab" data-bs-toggle="tab" data-bs-target="#makanan" type="button" role="tab" aria-controls="makanan" aria-selected="true">Makanan</button>
+            <button class="nav-link active" id="makanan-tab" data-bs-toggle="tab" data-bs-target="#makanan"
+                type="button" role="tab" aria-controls="makanan" aria-selected="true">Makanan</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="minuman-tab" data-bs-toggle="tab" data-bs-target="#minuman" type="button" role="tab" aria-controls="minuman" aria-selected="false">Minuman</button>
+            <button class="nav-link" id="minuman-tab" data-bs-toggle="tab" data-bs-target="#minuman" type="button"
+                role="tab" aria-controls="minuman" aria-selected="false">Minuman</button>
         </li>
     </ul>
 
@@ -133,41 +138,38 @@
                 <h4 id="scrollspyHeading1">Makanan</h4>
                 <div class="row justify-content-center d-flex">
                     @foreach ($makanan as $item)
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="row">
-                                <div class="menu-image col-md-6">
-                                    <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Makanan">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">{{ $item->menus_name }}</h5>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
-
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="row">
+                                    <div class="menu-image col-md-6">
+                                        <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Makanan">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ $item->menus_name }}</h5>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="align-items-center">
-                                    <button class="btn btn-outline-success btn-tambah" type="submit">Tambah</button>
-                                    <button class="btn btn-outline-success btn-min" type="submit">
-                                        <h6>-</h6>
-                                    </button>
-                                    <span class="counter-item"></span>
-
-                                    <button class="btn btn-outline-success btn-pls" type="submit">
-                                        <h6>+</h6>
-
-                                    </button>
+                                <div class="row">
+                                    <div class="align-items-center">
+                                        <button class="btn btn-outline-success btn-tambah" data-menu-id="{{ $item->id }}"
+                                            type="submit">Tambah</button>
+                                        <button class="btn btn-outline-success btn-min" data-menu-id="{{ $item->id }}"
+                                            type="submit" style="display:none;">
+                                            <h6>-</h6>
+                                        </button>
+                                        <span class="counter-item" style="display:none;">1</span>
+                                        <button class="btn btn-outline-success btn-pls" data-menu-id="{{ $item->id }}"
+                                            type="submit" style="display:none;">
+                                            <h6>+</h6>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -178,24 +180,40 @@
                 <h4 id="scrollspyHeading2">Minuman</h4>
                 <div class="row justify-content-center d-flex">
                     @foreach ($minuman as $item)
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="row">
-                                <div class="menu-image col-md-6">
-                                    <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Minuman">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">{{ $item->menus_name }}</h5>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
-                                            <button class="btn btn-outline-success" type="submit">Tambah</button>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="row">
+                                    <div class="menu-image col-md-6">
+                                        <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Minuman">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ $item->menus_name }}</h5>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
+                                                <button class="btn btn-outline-success btn-tambah"
+                                                    data-menu-id="{{ $item->id }}" type="submit">Tambah</button>
+                                            </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="align-items-center">
+                                        <button class="btn btn-outline-success btn-tambah" data-menu-id="{{ $item->id }}"
+                                            type="submit">Tambah</button>
+                                        <button class="btn btn-outline-success btn-min" data-menu-id="{{ $item->id }}"
+                                            type="submit" style="display:none;">
+                                            <h6>-</h6>
+                                        </button>
+                                        <span class="counter-item" style="display:none;">1</span>
+                                        <button class="btn btn-outline-success btn-pls" data-menu-id="{{ $item->id }}"
+                                            type="submit" style="display:none;">
+                                            <h6>+</h6>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -203,48 +221,57 @@
     </div>
 
     <script>
-        // Ambil referensi tombol-tambah
-        const btnTambah = document.querySelector('.btn-tambah');
+        // Ambil ID pengguna dari meta tag
+        const userId = document.querySelector('meta[name="user-id"]').getAttribute('content');
 
-        // Ambil referensi tombol-min
-        const btnMin = document.querySelector('.btn-min');
-
-        // Ambil referensi tombol-pls
-        const btnPls = document.querySelector('.btn-pls');
-
-        // Ambil referensi elemen yang menampilkan jumlah item
-        const jumlahItem = document.querySelector('.counter-item');
-
-        // Inisialisasi jumlah item
-        let itemCounter = 1;
-
-        // Fungsi untuk mengubah tampilan tombol
-        function toggleButtons() {
-            btnTambah.style.display = 'none';
-            btnMin.style.display = 'block';
-            btnPls.style.display = 'block';
+        // Fungsi untuk menambah item ke keranjang
+        function addToCart(menuId, quantity = 1) {
+            $.ajax({
+                url: '{{ route("cart.add") }}',
+                method: 'POST',
+                data: {
+                    menu_id: menuId,
+                    quantity: quantity,
+                    user_id: userId, // Sertakan user_id
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (response) {
+                    alert(response.message);
+                    // Perbarui tampilan keranjang di sini jika diperlukan
+                },
+                error: function (response) {
+                    console.error('Error:', response); // Log error di sini
+                    alert('Gagal menambahkan ke keranjang');
+                }
+            });
         }
 
-        // Event listener untuk tombol-tambah
-        btnTambah.addEventListener('click', () => {
-            toggleButtons();
-            jumlahItem.textContent = itemCounter;
+        // Event listener untuk tombol "Tambah"
+        $(document).on('click', '.btn-tambah', function () {
+            const menuId = $(this).data('menu-id');
+            addToCart(menuId);
         });
 
-        // Event listener untuk tombol-min
-        btnMin.addEventListener('click', () => {
-            if (itemCounter > 1) {
-                itemCounter--;
-                jumlahItem.textContent = itemCounter;
+        // Event listener untuk tombol plus dan minus untuk memperbarui jumlah item
+        $(document).on('click', '.btn-pls', function () {
+            const menuId = $(this).data('menu-id');
+            const counter = $(this).siblings('.counter-item');
+            let quantity = parseInt(counter.text()) + 1;
+            counter.text(quantity);
+            addToCart(menuId, quantity);
+        });
+
+        $(document).on('click', '.btn-min', function () {
+            const menuId = $(this).data('menu-id');
+            const counter = $(this).siblings('.counter-item');
+            let quantity = parseInt(counter.text()) - 1;
+            if (quantity >= 1) {
+                counter.text(quantity);
+                addToCart(menuId, quantity);
             }
         });
-
-        // Event listener untuk tombol-pls
-        btnPls.addEventListener('click', () => {
-            itemCounter++;
-            jumlahItem.textContent = itemCounter;
-        });
     </script>
+
 </body>
 
 </html>

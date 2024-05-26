@@ -13,7 +13,7 @@ $subtotal = 0;
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
 
     <style>
         .nav-link:hover {
@@ -115,51 +115,135 @@ $subtotal = 0;
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row justify-content-center d-flex px-3">
-                        <div class="card mb-4">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div>
-                                        <h5 class="text-nama">nama</h5>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="menu-image">
-                                        <img src="img/HomepageTop.png" class="card-img" alt="...">
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="text-harga col-md-8">
-                                    15.000
-                                </div>
-                                <div class="card-body text-center  col-md-4">
-                                    <button class="btn btn-outline-success" type="submit">
-                                        <h6>-</h6>
-                                    </button>
-                                    <h5>1</h5>
-                                    <button class="btn btn-outline-success" type="submit">
-                                        <h6>+</h6>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="cart-items" class="row justify-content-center d-flex px-3">
+                        <!-- Daftar Pesanan Akan Dimuat di Sini -->
                     </div>
-                    <div class="modal-footer">
-                        <span class="subtotal-harga">
-                            total bayar : 16000
-                        </span>
-                        <form action="{{ route('konfirmasipembayaran', $item)}}" method="GET">
-                            <button type="submit" class="btn btn-primary">
-                                lanjut ke pembayaran
-                            </button>
-                        </form>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Konfirmasi Pesanan</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            // Memuat item di keranjang saat modal dibuka
+            $('#exampleModal').on('show.bs.modal', function () {
+                loadCartItems();
+            });
+
+            // Menambahkan item ke keranjang
+            $('.add-to-cart').on('click', function () {
+                var menuId = $(this).data('menu-id');
+                var quantity = $(this).data('quantity');
+
+                $.ajax({
+                    url: '{{ route("cart.add") }}',
+                    method: 'POST',
+                    data: {
+                        menu_id: menuId,
+                        quantity: quantity,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (response) {
+                        alert(response.message);
+                        loadCartItems();
+                    }
+                });
+            });
+
+            // Memuat item di keranjang
+            function loadCartItems() {
+                $.ajax({
+                    url: '{{ route("cart.items") }}',
+                    method: 'GET',
+                    success: function (response) {
+                        var items = response.items;
+                        var cartItemsHtml = '';
+
+                        items.forEach(function (item) {
+                            cartItemsHtml += `
+                            <div class="card mb-4">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div>
+                                            <h5 class="text-nama">${item.menu.name}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="menu-image">
+                                            <img src="${item.menu.image}" class="card-img" alt="${item.menu.name}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="text-harga col-md-8">
+                                        ${item.menu.price}
+                                    </div>
+                                    <div class="card-body text-center col-md-4">
+                                        <button class="btn btn-outline-success update-cart-item" data-id="${item.id}" data-quantity="${item.quantity - 1}">
+                                            <h6>-</h6>
+                                        </button>
+                                        <h5>${item.quantity}</h5>
+                                        <button class="btn btn-outline-success update-cart-item" data-id="${item.id}" data-quantity="${item.quantity + 1}">
+                                            <h6>+</h6>
+                                        </button>
+                                        <button class="btn btn-danger remove-cart-item" data-id="${item.id}">
+                                            <h6>x</h6>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>`;
+                        });
+
+                        $('#cart-items').html(cartItemsHtml);
+                    }
+                });
+            }
+
+            // Memperbarui item di keranjang
+            $(document).on('click', '.update-cart-item', function () {
+                var itemId = $(this).data('id');
+                var quantity = $(this).data('quantity');
+
+                if (quantity < 1) return;
+
+                $.ajax({
+                    url: `/cart/items/${itemId}`,
+                    method: 'PUT',
+                    data: {
+                        quantity: quantity,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (response) {
+                        alert(response.message);
+                        loadCartItems();
+                    }
+                });
+            });
+
+            // Menghapus item dari keranjang
+            $(document).on('click', '.remove-cart-item', function () {
+                var itemId = $(this).data('id');
+
+                $.ajax({
+                    url: `/cart/items/${itemId}`,
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (response) {
+                        alert(response.message);
+                        loadCartItems();
+                    }
+                });
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>

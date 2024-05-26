@@ -20,8 +20,8 @@ Route::get('/pembayaran{item}', [WebController::class, 'pembayaran'])->name('kon
 
 Route::get('/search', [MenuController::class, 'search'])->name('menus.search');
 
-Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+// Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
+// Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 Route::get('/dashboard', [WebController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -30,8 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');      
+    // Route::post('/cart/{menu}', [CartController::class, 'add'])->name('cart.add');
+    // Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/cart/items', [CartController::class, 'getCartItems'])->name('cart.items');
+    Route::put('/cart/items/{id}', [CartController::class, 'updateCartItem'])->name('cart.update');
+    Route::delete('/cart/items/{id}', [CartController::class, 'removeCartItem'])->name('cart.remove');
 });
 
 require __DIR__.'/auth.php';
