@@ -75,6 +75,12 @@
         .menu-image img {
             height: 100%;
             object-fit: cover;
+            max-height: 180px;
+        }
+
+        .card-menus {
+            padding: 15px;
+
         }
 
         .card-body h5 {
@@ -131,11 +137,11 @@
         <div class="tab-pane fade show active" id="makanan" role="tabpanel" aria-labelledby="makanan-tab">
             <div class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
                 <h4 id="scrollspyHeading1">Makanan</h4>
-                <div class="row justify-content-center d-flex">
+                <div class="row justify-content-center d-flex ">
                     @foreach ($makanan as $item)
                     <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="row">
+                        <div class="card mb-4 card-menus">
+                            <div class="row ">
                                 <div class="menu-image col-md-6">
                                     <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Makanan">
                                 </div>
@@ -170,8 +176,8 @@
                 <div class="row justify-content-center d-flex">
                     @foreach ($minuman as $item)
                     <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="row">
+                        <div class="card mb-4 card-menus">
+                            <div class="row ">
                                 <div class="menu-image col-md-6">
                                     <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Minuman">
                                 </div>
