@@ -88,8 +88,6 @@
         .footer {
             height: 50px;
         }
-
-        
     </style>
 </head>
 
@@ -129,7 +127,6 @@
             <button class="nav-link" id="minuman-tab" data-bs-toggle="tab" data-bs-target="#minuman" type="button" role="tab" aria-controls="minuman" aria-selected="false">Minuman</button>
         </li>
     </ul>
-
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="makanan" role="tabpanel" aria-labelledby="makanan-tab">
             <div class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
@@ -148,23 +145,18 @@
                                             <h6 class="card-title">{{ $item->menus_name }}</h6>
                                         </div>
                                         <div class="text-center mb-2">
-                                            <p class=" m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
+                                            <p class="m-0">{{ number_format($item->price, 0, ',', '.') }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="tambah-btn my-2 d-md-flex justify-content-md-center">
-
-
                                             @if ($is_open)
                                             <button class="btn btn-outline-success btn-tambah" data-menu-id="{{ $item->id }}" type="submit">Tambah</button>
                                             @endif
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </button>
-
                         </div>
                     </div>
                     @endforeach
@@ -194,28 +186,21 @@
                                     </div>
                                     <div class="row">
                                         <div class="tambah-btn my-2 d-md-flex justify-content-md-center">
-
                                             @if ($is_open)
-                                            <button class="btn btn-outline-success btn-tambah " data-menu-id="{{ $item->id }}" type="submit">Tambah</button>
+                                            <button class="btn btn-outline-success btn-tambah" data-menu-id="{{ $item->id }}" type="submit">Tambah</button>
                                             @endif
-
-                                            </button>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
-    </div>
+
 
     <script>
         // Ambil ID pengguna dari meta tag
