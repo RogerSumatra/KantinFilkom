@@ -35,10 +35,10 @@
             z-index: -1;
         }
 
-        .cont-refister {
+        .cont-register {
             width: fit-content;
             width: 900px;
-            height: 700px;
+            height: fit-content;
             background-image: url("img/Background.png");
             background-size: cover;
             background-position: center;
@@ -47,8 +47,10 @@
             margin-top: 100px;
         }
 
-        .refister-content {
+        .register-content {
             background-color: white;
+            height: fit-content;    
+            padding: 20px;
         }
 
         .btn-signup {
@@ -64,10 +66,10 @@
 <body>
 
     <div class="register-wrapper">
-        <div class="row cont-refister">
+        <div class="row cont-register">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-                <div class="col-md-6 refister-content">
+                <div class="col-md-6 register-content">
                     <div style="display: flex; justify-content: center;">
                         <h5>Buat Akun Baru</h5>
                     </div>
