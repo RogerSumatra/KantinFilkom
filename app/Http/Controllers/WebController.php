@@ -17,10 +17,10 @@ class WebController extends Controller
 {
     public function index()
     {
-        if(Auth::user() == null){
+        if (Auth::user() == null) {
             $toko = Seller::all();
             return view('web.homepage', compact('toko'));
-        }else{
+        } else {
             $user = Auth::user();
             $item = Item::where('user_id', $user->id)->get();
             $toko = Seller::all();
@@ -28,42 +28,47 @@ class WebController extends Controller
         }
     }
 
-    public function konfirmasiPembayaran(Request $request)
-{
-    $userId = Auth::id();
-    $cartItems = Item::where('user_id', $userId)->get();
-
-    if ($cartItems->isEmpty()) {
-        return redirect()->route('homepage')->with('error', 'Keranjang anda kosong');
+    public function qris()
+    {
+        return view('web.qris');
     }
 
-    $subtotal = $cartItems->sum(function ($item) {
-        return $item->menu->price * $item->quantity;
-    });
+    public function konfirmasiPembayaran(Request $request)
+    {
+        $userId = Auth::id();
+        $cartItems = Item::where('user_id', $userId)->get();
 
-    $ppn = $subtotal * 0.1; //PPN 10%
-    $totalHarga = $subtotal + $ppn;
-
-    $toko = Seller::find($cartItems->first()->menu->seller_id);
-
-    // Simpan transaksi
-    DB::transaction(function () use ($userId, $cartItems, $totalHarga) {
-        foreach ($cartItems as $item) {
-            History::create([
-                'user_id' => $userId,
-                'menu_id' => $item->menu->id,
-                'quantity' => $item->quantity,
-                'total_price' => $totalHarga,
-                'status' => 'confirmed'
-            ]);
-
-            // Hapus item dari keranjang setelah konfirmasi pembayaran
-            $item->delete();
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('homepage')->with('error', 'Keranjang anda kosong');
         }
-    });
 
-    return view('web.konfirmasiPembayaran', compact('cartItems', 'subtotal', 'ppn', 'totalHarga', 'toko'));
-}
+        $subtotal = $cartItems->sum(function ($item) {
+            return $item->menu->price * $item->quantity;
+        });
+
+        $ppn = $subtotal * 0.1; //PPN 10%
+        $totalHarga = $subtotal + $ppn;
+
+        $toko = Seller::find($cartItems->first()->menu->seller_id);
+
+        // Simpan transaksi
+        DB::transaction(function () use ($userId, $cartItems, $totalHarga) {
+            foreach ($cartItems as $item) {
+                History::create([
+                    'user_id' => $userId,
+                    'menu_id' => $item->menu->id,
+                    'quantity' => $item->quantity,
+                    'total_price' => $totalHarga,
+                    'status' => 'confirmed'
+                ]);
+
+                // Hapus item dari keranjang setelah konfirmasi pembayaran
+                $item->delete();
+            }
+        });
+
+        return view('web.konfirmasiPembayaran', compact('cartItems', 'subtotal', 'ppn', 'totalHarga', 'toko'));
+    }
 
     public function get_seller($id)
     {
