@@ -144,7 +144,7 @@
     </div>
 
     <div class="toko-info">
-        <h3>{{ $toko->name }}</h3>
+        <h3>{{ $toko->nama_toko }}</h3>
         <div class="jam-buka">
             <div class="status-buka">
                 @if ($is_open)
