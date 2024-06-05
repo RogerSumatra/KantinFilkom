@@ -74,7 +74,7 @@
                     </div>
                     <div class="row align-items-center">
                         <div class="col-md-4 d-flex justify-content-center align-items-center mb-2">
-                            <img src="{{ asset($tokos->picture) }}" class="card-img" alt="Gambar">
+                            <img src="{{ asset('storage/' . $tokos->picture) }}" class="card-img" alt="Gambar">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -94,7 +94,7 @@
                                                 <button class="btn btn-outline-success btn-tambah"
                                                     data-menu-id="{{ $item->id }}" type="submit">Tambah</button>
                                             @else
-                                                Toko tutup bros
+                                                
                                             @endif
                                         </div>
                                     </div>

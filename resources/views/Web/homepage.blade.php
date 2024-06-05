@@ -76,7 +76,7 @@
                     <div class="col-md-4">
                         <a href="{{ url('/menu', $item->id) }}" class="card-link">
                             <div class="card mb-4">
-                                <img src="{{ asset($item->picture) }}" class="card-img-top homepage-seller-img" alt="Toko Logo">
+                                <img src="{{ asset('storage/' . $item->picture) }}" class="card-img-top homepage-seller-img" alt="{{ asset($item->picture) }}">
                                 <div class="card-body">
                                     <h5 class="card-titleg">{{ $item->nama_toko }}</h5>
                                 </div>

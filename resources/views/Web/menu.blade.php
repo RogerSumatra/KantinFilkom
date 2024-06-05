@@ -106,7 +106,7 @@
     @endauth
 
     <div class="toko-image">
-        <img src="{{ asset($toko->picture) }}" alt="">
+        <img src="{{ asset('storage/' . $toko->picture) }}" alt="{{ asset($toko->picture) }}">
     </div>
 
     <div class="toko-info">
@@ -143,7 +143,7 @@
                         <div class="card mb-4 card-menus">
                             <div class="row ">
                                 <div class="menu-image col-md-6">
-                                    <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Makanan">
+                                    <img src="{{ asset('storage/' . $item->images) }}" class="card-img" alt="Gambar Makanan">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
@@ -179,7 +179,7 @@
                         <div class="card mb-4 card-menus">
                             <div class="row ">
                                 <div class="menu-image col-md-6">
-                                    <img src="{{ asset($item->images) }}" class="card-img" alt="Gambar Minuman">
+                                    <img src="{{ asset('storage/' . $item->images) }}" class="card-img" alt="Gambar Minuman">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
