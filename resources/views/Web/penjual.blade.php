@@ -371,11 +371,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    tambah
+                    <div class="row">
+                        <div class="col-md-6 justify-content-center d-flex">
+                            <form action="{{ route('seller.updatePhoto') }}" method="POST" enctype="multipart/form-data">
+                                @csrf <!-- Include CSRF token for security -->
+                                <div class="form-group">
+                                    <label for="fileUpload">Upload File</label>
+                                    <input type="file" class="form-control-file" id="fileUpload" name="fileUpload"
+                                        onchange="previewFile()">
+                                </div>
+                                <div class="form-group img-preview">
+                                    <img id="filePreview" src="" alt="File Preview"
+                                        style="display: none; max-width: 100%; height: auto;">
+                                </div>
+        
+        
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text">
+                            <input type="text">
+                            <input type="text">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary">Tambah Menu</button>
                 </div>
             </div>
         </div>
@@ -389,11 +410,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    edit
+                    <div class="row">
+                        <div class="col-md-6 justify-content-center d-flex">
+                            <form action="{{ route('seller.updatePhoto') }}" method="POST" enctype="multipart/form-data">
+                                @csrf <!-- Include CSRF token for security -->
+                                <div class="form-group">
+                                    <label for="fileUpload">Upload File</label>
+                                    <input type="file" class="form-control-file" id="fileUpload" name="fileUpload"
+                                        onchange="previewFile()">
+                                </div>
+                                <div class="form-group img-preview">
+                                    <img id="filePreview" src="" alt="File Preview"
+                                        style="display: none; max-width: 100%; height: auto;">
+                                </div>
+        
+        
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text">
+                            <input type="text">
+                            <input type="text">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary">Simpan Perubahan</button>
                 </div>
             </div>
         </div>
