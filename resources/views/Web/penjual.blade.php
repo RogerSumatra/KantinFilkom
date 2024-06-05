@@ -120,6 +120,11 @@
             margin-bottom: 5px;
             margin-left: 10px;
         }
+
+        .edit-toko{
+            background: whitesmoke;
+            padding: 5px 5px 5px 5px;
+        }
     </style>
 </head>
 
@@ -133,7 +138,7 @@
 
     <div class="toko-image position-relative">
         <button class="btn btn-edit position-absolute" type="submit">
-            <img class="img-edit" src="{{ asset('img/edit.png') }}" alt="">
+            <img class="img-edit edit-toko" src="{{ asset('img/edit.png') }}" alt="">
         </button>
         <img src="{{ asset($toko->picture) }}" alt="">
     </div>
