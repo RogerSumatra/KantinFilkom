@@ -117,6 +117,6 @@ class WebController extends Controller
         $makanan = Menu::where('seller_id', $id)->where('types', 'Makanan')->get();
         $minuman = Menu::where('seller_id', $id)->where('types', 'Minuman')->get();
 
-        return view('web.penjual', compact('toko', 'makanan', 'minuman', 'jam_operasional', 'is_open', 'item'));
+        return view('web.menu', compact('toko', 'makanan', 'minuman', 'jam_operasional', 'is_open', 'item'));
     }
 }

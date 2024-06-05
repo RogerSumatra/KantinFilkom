@@ -188,7 +188,8 @@
                             <div class="card mb-4 card-menus">
                                 <div class="row ">
                                     <div class="menu-image col-md-6">
-                                        <img src="{{ asset('storage/' . $item->images) }}" class="card-img" alt="Gambar Makanan">
+                                        <img src="{{ asset('storage/' . $item->images) }}" class="card-img"
+                                            alt="Gambar Makanan">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="row">
@@ -226,7 +227,8 @@
                             <div class="card mb-4 card-menus">
                                 <div class="row ">
                                     <div class="menu-image col-md-6">
-                                        <img src="{{ asset('storage/' . $item->images) }}" class="card-img" alt="Gambar Minuman">
+                                        <img src="{{ asset('storage/' . $item->images) }}" class="card-img"
+                                            alt="Gambar Minuman">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="row">
@@ -335,7 +337,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="ubahGambarTokoLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="ubahGambarTokoLabel">Ubah Gambar</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -367,36 +369,44 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="tambahMenuLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="tambahMenuLabel">Tambah Menu</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 justify-content-center d-flex">
-                            <form action="{{ route('seller.updatePhoto') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('seller.tambahMenu') }}" method="POST" enctype="multipart/form-data">
                                 @csrf <!-- Include CSRF token for security -->
                                 <div class="form-group">
                                     <label for="fileUpload">Upload File</label>
-                                    <input type="file" class="form-control-file" id="fileUpload" name="fileUpload"
+                                    <input type="file" class="form-control-file" id="fileUpload" name="images"
                                         onchange="previewFile()">
                                 </div>
                                 <div class="form-group img-preview">
                                     <img id="filePreview" src="" alt="File Preview"
                                         style="display: none; max-width: 100%; height: auto;">
                                 </div>
-        
-        
+                                <div class="mb-3">
+                                    <label for="nama" class="form-label">Nama Menu</label>
+                                    <input type="text" class="form-control" id="nama" name="menus_name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="jenis" class="form-label">Jenis</label>
+                                    <select class="form-select" id="jenis" name="types">
+                                        <option value="Makanan">Makanan</option>
+                                        <option value="Minuman">Minuman</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="harga" class="form-label">Harga</label>
+                                    <input type="number" class="form-control" id="harga" name="price">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Tambah Menu</button>
+                                </div>
                             </form>
                         </div>
-                        <div class="col-md-6">
-                            <input type="text">
-                            <input type="text">
-                            <input type="text">
-                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Tambah Menu</button>
                 </div>
             </div>
         </div>
@@ -406,13 +416,14 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="ubahMenuLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="ubahMenuLabel">Ubah Menu</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 justify-content-center d-flex">
-                            <form action="{{ route('seller.updatePhoto') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('seller.updatePhoto') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf <!-- Include CSRF token for security -->
                                 <div class="form-group">
                                     <label for="fileUpload">Upload File</label>
@@ -423,8 +434,8 @@
                                     <img id="filePreview" src="" alt="File Preview"
                                         style="display: none; max-width: 100%; height: auto;">
                                 </div>
-        
-        
+
+
                             </form>
                         </div>
                         <div class="col-md-6">
