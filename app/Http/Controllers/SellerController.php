@@ -115,4 +115,22 @@ class SellerController extends Controller
         // Redirect kembali dengan pesan sukses
         return redirect()->route('dashboard');
     }
+
+    public function editMenu(Request $request, $id)
+    {
+        $menu = Menu::findOrFail($id);
+        $menu->menus_name = $request->menus_name;
+        $menu->types = $request->types;
+        $menu->price = $request->price;
+    
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
+            $path = $file->store('images', 'public');
+            $menu->images = $path;
+        }
+    
+        $menu->save();
+    
+        return redirect()->route('dashboard')->with('success', 'Menu updated successfully');
+    }
 }

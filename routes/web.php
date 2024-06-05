@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
     Route::post('/seller/updatePhoto', [SellerController::class, 'updatePhoto'])->name('seller.updatePhoto');
     Route::post('/seller/addMenu', [SellerController::class, 'addMenu'])->name('seller.tambahMenu');
+    Route::put('/menu/{id}', [SellerController::class, 'editMenu'])->name('seller.editMenu');
 });
 
 require __DIR__.'/auth.php';

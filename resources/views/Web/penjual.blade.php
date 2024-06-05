@@ -204,9 +204,11 @@
                                             <div class="tambah-btn my-2 d-md-flex justify-content-md-end">
 
                                                 <button class="btn btn-edit" data-menu-id="{{ $item->id }}"
-                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu" type="submit"><img
-                                                        class="img-edit" src="{{ asset('img/edit.png') }}" alt=""></button>
-
+                                                    data-menus_name="{{ $item->menus_name }}"
+                                                    data-types="{{ $item->types }}" data-price="{{ $item->price }}"
+                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu" type="button">
+                                                    <img class="img-edit" src="{{ asset('img/edit.png') }}" alt="">
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -243,8 +245,11 @@
                                             <div class="tambah-btn my-2 d-md-flex justify-content-md-end">
 
                                                 <button class="btn btn-edit" data-menu-id="{{ $item->id }}"
-                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu" type="submit"><img
-                                                        class="img-edit" src="{{ asset('img/edit.png') }}" alt=""></button>
+                                                    data-menus_name="{{ $item->menus_name }}"
+                                                    data-types="{{ $item->types }}" data-price="{{ $item->price }}"
+                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu" type="button">
+                                                    <img class="img-edit" src="{{ asset('img/edit.png') }}" alt="">
+                                                </button>
 
                                             </div>
                                         </div>
@@ -313,6 +318,20 @@
                 counter.text(quantity);
                 addToCart(menuId, quantity);
             }
+        });
+
+        $(document).on('click', '.btn-edit', function () {
+            // Ambil data dari atribut data-* tombol edit
+            var menuId = $(this).data('menu-id');
+            var menuName = $(this).data('menus_name');
+            var menuType = $(this).data('types');
+            var menuPrice = $(this).data('price');
+
+            // Isi form di modal dengan data yang diambil
+            $('#ubahMenu form').attr('action', '{{ url('menu') }}/' + menuId);
+            $('#ubahMenu #nama').val(menuName);
+            $('#ubahMenu #jenis').val(menuType);
+            $('#ubahMenu #harga').val(menuPrice);
         });
 
         function previewFile() {
@@ -420,37 +439,42 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6 justify-content-center d-flex">
-                            <form action="{{ route('seller.updatePhoto') }}" method="POST"
-                                enctype="multipart/form-data">
-                                @csrf <!-- Include CSRF token for security -->
-                                <div class="form-group">
-                                    <label for="fileUpload">Upload File</label>
-                                    <input type="file" class="form-control-file" id="fileUpload" name="fileUpload"
-                                        onchange="previewFile()">
-                                </div>
-                                <div class="form-group img-preview">
-                                    <img id="filePreview" src="" alt="File Preview"
-                                        style="display: none; max-width: 100%; height: auto;">
-                                </div>
-
-
-                            </form>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="fileUpload">Upload File</label>
+                            <input type="file" class="form-control-file" id="fileUpload" name="images"
+                                onchange="previewFile()">
                         </div>
-                        <div class="col-md-6">
-                            <input type="text">
-                            <input type="text">
-                            <input type="text">
+                        <div class="form-group img-preview">
+                            <img id="filePreview" src="" alt="File Preview"
+                                style="display: none; max-width: 100%; height: auto;">
                         </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama Menu</label>
+                            <input type="text" class="form-control" id="nama" name="menus_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jenis" class="form-label">Jenis</label>
+                            <select class="form-select" id="jenis" name="types">
+                                <option value="Makanan">Makanan</option>
+                                <option value="Minuman">Minuman</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" class="form-control" id="harga" name="price">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
 
 </body>
 
