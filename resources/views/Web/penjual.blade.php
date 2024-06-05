@@ -392,40 +392,36 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6 justify-content-center d-flex">
-                            <form action="{{ route('seller.tambahMenu') }}" method="POST" enctype="multipart/form-data">
-                                @csrf <!-- Include CSRF token for security -->
-                                <div class="form-group">
-                                    <label for="fileUpload">Upload File</label>
-                                    <input type="file" class="form-control-file" id="fileUpload" name="images"
-                                        onchange="previewFile()">
-                                </div>
-                                <div class="form-group img-preview">
-                                    <img id="filePreview" src="" alt="File Preview"
-                                        style="display: none; max-width: 100%; height: auto;">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nama" class="form-label">Nama Menu</label>
-                                    <input type="text" class="form-control" id="nama" name="menus_name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="jenis" class="form-label">Jenis</label>
-                                    <select class="form-select" id="jenis" name="types">
-                                        <option value="Makanan">Makanan</option>
-                                        <option value="Minuman">Minuman</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="harga" class="form-label">Harga</label>
-                                    <input type="number" class="form-control" id="harga" name="price">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Tambah Menu</button>
-                                </div>
-                            </form>
+                    <form action="{{ route('seller.tambahMenu') }}" method="POST" enctype="multipart/form-data">
+                        @csrf <!-- Include CSRF token for security -->
+                        <div class="form-group">
+                            <label for="fileUpload">Upload File</label>
+                            <input type="file" class="form-control-file" id="fileUpload" name="images"
+                                onchange="previewFile()">
                         </div>
-                    </div>
+                        <div class="form-group img-preview">
+                            <img id="filePreview" src="" alt="File Preview"
+                                style="display: none; max-width: 100%; height: auto;">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama Menu</label>
+                            <input type="text" class="form-control" id="nama" name="menus_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jenis" class="form-label">Jenis</label>
+                            <select class="form-select" id="jenis" name="types">
+                                <option value="Makanan">Makanan</option>
+                                <option value="Minuman">Minuman</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" class="form-control" id="harga" name="price">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Tambah Menu</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
