@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HistoryController;
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart/items', [CartController::class, 'getCartItems'])->name('cart.items');
     Route::put('/cart/items/{id}', [CartController::class, 'updateCartItem'])->name('cart.update');
     Route::delete('/cart/items/{id}', [CartController::class, 'removeCartItem'])->name('cart.remove');
+
+    Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
+    Route::post('/seller/update', [SellerController::class, 'update'])->name('seller.update');
 });
 
 require __DIR__.'/auth.php';

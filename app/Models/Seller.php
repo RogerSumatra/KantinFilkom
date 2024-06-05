@@ -14,4 +14,10 @@ class Seller extends Model
         'jam_buka', 
         'picture', 
     ];
+
+    //relasi ke user tipe penjual
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

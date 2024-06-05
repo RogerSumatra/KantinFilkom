@@ -21,10 +21,35 @@ class WebController extends Controller
             $toko = Seller::all();
             return view('web.homepage', compact('toko'));
         } else {
-            $user = Auth::user();
-            $item = Item::where('user_id', $user->id)->get();
-            $toko = Seller::all();
-            return view('web.homepage', compact('toko', 'item'));
+            if (Auth::user()->isSeller()) {
+                $id = Auth::id();
+
+                $toko = Seller::where('user_id', $id)->first();
+
+                // Time zone sekarang
+                $now = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+                $current_time = $now->format('H:i');
+
+                $jam_operasional = $toko->jam_buka;
+
+                // ambil jam_buka dan jam_tutup dengan pisah -
+                list($jam_buka, $jam_tutup) = explode(' - ', $jam_operasional);
+
+                // Tentukan status buka atau tutup berdasarkan waktu saat ini
+                $is_open = ($current_time >= $jam_buka && $current_time <= $jam_tutup);
+
+                //get makanan and minuman
+                $makanan = Menu::where('seller_id', $toko->id)->where('types', 'Makanan')->get();
+                $minuman = Menu::where('seller_id', $toko->id)->where('types', 'Minuman')->get();
+
+                return view('web.penjual', compact('toko', 'makanan', 'minuman', 'jam_operasional', 'is_open'));
+            } else {
+                $user = Auth::user();
+                $item = Item::where('user_id', $user->id)->get();
+                $toko = Seller::all();
+                return view('web.homepage', compact('toko', 'item'));
+            }
+
         }
     }
 

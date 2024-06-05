@@ -90,9 +90,11 @@
                                     <div class="row">
                                         <div class="tambah-btn my-2 d-md-flex justify-content-md-center">
 
-                                            @if ($is_open)
+                                            @if ($tokos->is_open)
                                                 <button class="btn btn-outline-success btn-tambah"
                                                     data-menu-id="{{ $item->id }}" type="submit">Tambah</button>
+                                            @else
+                                                Toko tutup bros
                                             @endif
                                         </div>
                                     </div>

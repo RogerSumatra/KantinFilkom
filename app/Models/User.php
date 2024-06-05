@@ -45,4 +45,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //relasi ke toko
+    public function seller()
+    {
+        return $this->hasOne(Seller::class);
+    }
+
+    public function isSeller()
+    {
+        return $this->seller()->exists();
+    }
 }
