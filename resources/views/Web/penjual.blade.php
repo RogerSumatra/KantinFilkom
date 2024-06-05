@@ -116,14 +116,18 @@
             margin-top: 20px !important;
         }
 
-        .edit-jam{
+        .edit-jam {
             margin-bottom: 5px;
             margin-left: 10px;
         }
 
-        .edit-toko{
+        .edit-toko {
             background: whitesmoke;
             padding: 5px 5px 5px 5px;
+        }
+
+        .img-preview{
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -137,7 +141,8 @@
     @endauth
 
     <div class="toko-image position-relative">
-        <button class="btn btn-edit position-absolute" type="submit">
+        <button class="btn btn-edit position-absolute" data-bs-toggle="modal" data-bs-target="#ubahGambarToko"
+            type="submit">
             <img class="img-edit edit-toko" src="{{ asset('img/edit.png') }}" alt="">
         </button>
         <img src="{{ asset($toko->picture) }}" alt="">
@@ -154,9 +159,6 @@
                 @endif
             </div>
             <h3>{{ $jam_operasional }}</h3>
-            <button class="btn btn-edit edit-jam"
-                type="submit"><img class="img-edit"
-                    src="{{ asset('img/edit.png') }}" alt=""></button>
         </div>
     </div>
 
@@ -172,9 +174,8 @@
                 role="tab" aria-controls="minuman" aria-selected="false">Minuman</button>
         </li>
         <li>
-            <button class="btn btn-edit"
-                type="submit"><img class="img-edit"
-                    src="{{ asset('img/edit.png') }}" alt=""></button>
+            <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#tambahMenu" type="submit"><img
+                    class="img-edit" src="{{ asset('img/edit.png') }}" alt=""></button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -202,6 +203,7 @@
                                             <div class="tambah-btn my-2 d-md-flex justify-content-md-end">
 
                                                 <button class="btn btn-edit" data-menu-id="{{ $item->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu"
                                                     type="submit"><img class="img-edit"
                                                         src="{{ asset('img/edit.png') }}" alt=""></button>
 
@@ -240,6 +242,7 @@
                                             <div class="tambah-btn my-2 d-md-flex justify-content-md-end">
 
                                                 <button class="btn btn-edit" data-menu-id="{{ $item->id }}"
+                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu"
                                                     type="submit"><img class="img-edit"
                                                         src="{{ asset('img/edit.png') }}" alt=""></button>
 
@@ -311,7 +314,91 @@
                 addToCart(menuId, quantity);
             }
         });
+
+        function previewFile() {
+            const preview = document.getElementById('filePreview');
+            const file = document.getElementById('fileUpload').files[0];
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function() {
+                // Convert file to base64 string and set as src of preview element
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ubahGambarToko" tabindex="-1" aria-labelledby="ubahGambarTokoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="ubahGambarTokoLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                        @csrf <!-- Include CSRF token for security -->
+                        <div class="form-group">
+                            <label for="fileUpload">Upload File</label>
+                            <input type="file" class="form-control-file" id="fileUpload" name="fileUpload"
+                                onchange="previewFile()">
+                        </div>
+                        <div class="form-group img-preview">
+                            <img id="filePreview" src="" alt="File Preview"
+                                style="display: none; max-width: 100%; height: auto;">
+                        </div>
+                        
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tambahMenu" tabindex="-1" aria-labelledby="tambahMenuLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="tambahMenuLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    tambah
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ubahMenu" tabindex="-1" aria-labelledby="ubahMenuLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="ubahMenuLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    edit
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
