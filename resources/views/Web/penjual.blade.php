@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
 
     <style>
         .nav-pills {
@@ -126,7 +126,7 @@
             padding: 5px 5px 5px 5px;
         }
 
-        .img-preview{
+        .img-preview {
             margin-top: 40px;
         }
     </style>
@@ -145,7 +145,7 @@
             type="submit">
             <img class="img-edit edit-toko" src="{{ asset('img/edit.png') }}" alt="">
         </button>
-        <img src="{{ asset($toko->picture) }}" alt="">
+        <img src="{{ asset('storage/' . $toko->picture) }}" alt="{{ asset($toko->picture) }}">
     </div>
 
     <div class="toko-info">
@@ -203,9 +203,8 @@
                                             <div class="tambah-btn my-2 d-md-flex justify-content-md-end">
 
                                                 <button class="btn btn-edit" data-menu-id="{{ $item->id }}"
-                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu"
-                                                    type="submit"><img class="img-edit"
-                                                        src="{{ asset('img/edit.png') }}" alt=""></button>
+                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu" type="submit"><img
+                                                        class="img-edit" src="{{ asset('img/edit.png') }}" alt=""></button>
 
                                             </div>
                                         </div>
@@ -242,9 +241,8 @@
                                             <div class="tambah-btn my-2 d-md-flex justify-content-md-end">
 
                                                 <button class="btn btn-edit" data-menu-id="{{ $item->id }}"
-                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu"
-                                                    type="submit"><img class="img-edit"
-                                                        src="{{ asset('img/edit.png') }}" alt=""></button>
+                                                    data-bs-toggle="modal" data-bs-target="#ubahMenu" type="submit"><img
+                                                        class="img-edit" src="{{ asset('img/edit.png') }}" alt=""></button>
 
                                             </div>
                                         </div>
@@ -274,11 +272,11 @@
                     user_id: userId, // Sertakan user_id
                     _token: '{{ csrf_token() }}'
                 },
-                success: function(response) {
+                success: function (response) {
                     alert(response.message);
                     // Perbarui tampilan keranjang di sini jika diperlukan
                 },
-                error: function(response) {
+                error: function (response) {
                     console.error('Error:', response); // Log error di sini
                     alert('Gagal menambahkan ke keranjang');
                 }
@@ -286,7 +284,7 @@
         }
 
         // Event listener untuk tombol "Tambah"
-        $(document).on('click', '.btn-tambah', function() {
+        $(document).on('click', '.btn-tambah', function () {
             const menuId = $(this).data('menu-id');
             if (userId) {
                 addToCart(menuId);
@@ -297,7 +295,7 @@
         });
 
         // Event listener untuk tombol plus dan minus untuk memperbarui jumlah item
-        $(document).on('click', '.btn-pls', function() {
+        $(document).on('click', '.btn-pls', function () {
             const menuId = $(this).data('menu-id');
             const counter = $(this).siblings('.counter-item');
             let quantity = parseInt(counter.text()) + 1;
@@ -305,7 +303,7 @@
             addToCart(menuId, quantity);
         });
 
-        $(document).on('click', '.btn-min', function() {
+        $(document).on('click', '.btn-min', function () {
             const menuId = $(this).data('menu-id');
             const counter = $(this).siblings('.counter-item');
             let quantity = parseInt(counter.text()) - 1;
@@ -320,7 +318,7 @@
             const file = document.getElementById('fileUpload').files[0];
             const reader = new FileReader();
 
-            reader.addEventListener("load", function() {
+            reader.addEventListener("load", function () {
                 // Convert file to base64 string and set as src of preview element
                 preview.src = reader.result;
                 preview.style.display = 'block';
@@ -333,8 +331,7 @@
     </script>
 
     <!-- Modal -->
-    <div class="modal fade" id="ubahGambarToko" tabindex="-1" aria-labelledby="ubahGambarTokoLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="ubahGambarToko" tabindex="-1" aria-labelledby="ubahGambarTokoLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -342,7 +339,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('seller.updatePhoto') }}" method="POST" enctype="multipart/form-data">
                         @csrf <!-- Include CSRF token for security -->
                         <div class="form-group">
                             <label for="fileUpload">Upload File</label>
@@ -353,13 +350,15 @@
                             <img id="filePreview" src="" alt="File Preview"
                                 style="display: none; max-width: 100%; height: auto;">
                         </div>
-                        
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+
                     </form>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                </div>
+
             </div>
         </div>
     </div>

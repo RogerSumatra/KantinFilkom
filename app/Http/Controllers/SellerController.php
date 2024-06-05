@@ -6,6 +6,7 @@ use App\Models\Seller;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class SellerController extends Controller
 {
@@ -38,5 +39,27 @@ class SellerController extends Controller
         $seller->update($request->all());
 
         return redirect()->route('seller.dashboard')->with('success', 'Informasi toko berhasil diperbarui');
+    }
+
+    public function updatePhoto(Request $request)
+    {
+        $seller = Auth::user()->seller;
+
+        if ($request->hasFile('fileUpload')) {
+            // Mendapatkan file yang diunggah
+            $file = $request->file('fileUpload');
+
+            // Menyimpan file ke direktori 'public/seller_images'
+            $path = $file->store('public/seller_images');
+
+            // Menghapus 'public/' dari jalur yang disimpan
+            $path = str_replace('public/', '', $path);
+
+            // Perbarui path gambar di database
+            $seller->picture = $path;
+            $seller->save();
+        }
+
+        return redirect()->route('dashboard');
     }
 }

@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/cart/items/{id}', [CartController::class, 'removeCartItem'])->name('cart.remove');
 
     Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
-    Route::post('/seller/update', [SellerController::class, 'update'])->name('seller.update');
+    Route::post('/seller/update', [SellerController::class, 'updatePhoto'])->name('seller.updatePhoto');
 });
 
 require __DIR__.'/auth.php';
